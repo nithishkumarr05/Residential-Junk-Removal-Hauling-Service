@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Residential Junk Removal | HaulSwift – Home Cleanout Services</title>
+    <link rel="icon" href="assests/favicon.png" type="image/png">
+    <meta name="description"
+        content="Residential junk removal services — furniture removal, appliance disposal, garage cleanouts, estate cleanouts, and yard waste hauling. Same-day service available.">
+
+    <!-- Tailwind CSS + Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'haul-primary': '#1B5E20',
+                        'haul-secondary': '#F57C00',
+                        'haul-accent': '#FFB300',
+                        'haul-dark': '#1a1a1a',
+                        'haul-light': '#F5F5F5',
+                        'haul-gray': '#424242',
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatTruck {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(2deg);
+            }
+        }
+
+        .animate-fade-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-float {
+            animation: floatTruck 6s ease-in-out infinite;
+        }
+
+        #mobile-menu {
+            max-height: calc(100vh - 64px);
+            overflow-y: auto;
+            transition: all 0.3s ease;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .mobile-dropdown-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-dropdown-icon.rotate {
+            transform: rotate(180deg);
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        @media (max-width: 1280px) {
+            .desktop-nav {
+                display: none;
+            }
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #F57C00;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        [dir="rtl"] .nav-link::after {
+            left: auto;
+            right: 0;
+        }
+
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .floating-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.1;
+            font-size: 24px;
+        }
+
+        .dark .bg-white\/95 {
+            background-color: #0a0a0a !important;
+        }
+
+        .dark .bg-gray-50 {
+            background-color: #1a1a1a !important;
+        }
+
+        .dark .text-gray-600 {
+            color: #cbd5e1 !important;
+        }
+
+        .dark h1,
+        .dark h2,
+        .dark h3,
+        .dark h4 {
+            color: #ffffff !important;
+        }
+
+        nav {
+            background-color: #ffffff !important;
+        }
+
+        .dark nav {
+            background-color: #0a0a0a !important;
+        }
+
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-800 dark:bg-haul-dark dark:text-gray-100 font-sans antialiased">
+
+    <!-- Floating particles -->
+    <div class="floating-particle left-[5%] top-[15%] animate-float">🏠</div>
+    <div class="floating-particle right-[8%] top-[25%] animate-float" style="animation-delay: 2s;">🚛</div>
+    <div class="floating-particle left-[10%] bottom-[20%] animate-float" style="animation-delay: 4s;">🗑️</div>
+    <div class="floating-particle right-[12%] bottom-[30%] animate-float" style="animation-delay: 3s;">♻️</div>
+
+    <!-- HEADER -->
+    <nav
+        class="fixed w-full top-0 z-50 bg-white dark:bg-haul-dark border-b border-gray-200 dark:border-gray-800 shadow-md transition-all duration-300">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="flex items-center gap-2 group">
+                        <i class="fas fa-dumpster text-2xl text-haul-secondary group-hover:text-haul-primary transition-colors"></i>
+                        <span class="text-2xl font-bold tracking-tight text-gray-800 dark:text-white">Haul<span class="text-haul-secondary">Swift</span></span>
+                    </a>
+                </div>
+
+                <div class="hidden xl:flex items-center justify-center flex-1 mx-6">
+                    <div class="flex items-center gap-4">
+                        <div class="relative group">
+                            <a href="index.html"
+                                class="nav-link text-gray-700 dark:text-gray-200 hover:text-haul-secondary font-medium text-sm py-2 inline-flex items-center gap-1">
+                                Home <i class="fas fa-chevron-down text-[10px]"></i>
+                            </a>
+                            <div
+                                class="absolute top-full left-0 mt-2 w-36 bg-white dark:bg-haul-dark border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 overflow-hidden">
+                                <a href="index.html"
+                                    class="block px-4 py-3 text-sm hover:bg-haul-secondary/10 transition-colors">Home
+                                    1</a>
+                                <a href="home2.html"
+                                    class="block px-4 py-3 text-sm hover:bg-haul-secondary/10 transition-colors border-t border-gray-100 dark:border-gray-800">Home
+                                    2</a>
+                            </div>
+                        </div>
+                        <a href="about.html"
+                            class="nav-link text-gray-700 dark:text-gray-200 hover:text-haul-secondary font-medium text-sm py-2">About</a>
+                        <a href="service.html"
+                            class="nav-link text-gray-700 dark:text-gray-200 hover:text-haul-secondary font-medium text-sm py-2">Service</a>
+                        <a href="pricing.html"
+                            class="nav-link text-gray-700 dark:text-gray-200 hover:text-haul-secondary font-medium text-sm py-2">Pricing</a>
+                        <a href="residential.html"
+                            class="nav-link active text-haul-secondary font-medium text-sm py-2">Residential</a>
+                        <a href="commercial.html"
+                            class="nav-link text-gray-700 dark:text-gray-200 hover:text-haul-secondary font-medium text-sm py-2">Commercial</a>
+                        <a href="contact.html"
+                            class="nav-link text-gray-700 dark:text-gray-200 hover:text-haul-secondary font-medium text-sm py-2">Contact
+                            Us</a>
+                        <div class="relative group">
+                            <a href="admin.html"
+                                class="nav-link text-gray-700 dark:text-gray-200 hover:text-haul-secondary font-medium text-sm py-2 inline-flex items-center gap-1">
+                                Dashboard <i class="fas fa-chevron-down text-[10px]"></i>
+                            </a>
+                            <div
+                                class="absolute top-full left-0 mt-2 w-36 bg-white dark:bg-haul-dark border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 overflow-hidden">
+                                <a href="admin.html"
+                                    class="block px-4 py-3 text-sm hover:bg-haul-secondary/10 transition-colors">Admin</a>
+                                <a href="client.html"
+                                    class="block px-4 py-3 text-sm hover:bg-haul-secondary/10 transition-colors border-t border-gray-100 dark:border-gray-800">Client</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hidden xl:flex items-center gap-3">
+                    <button id="themeToggle"
+                        class="w-9 h-9 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center hover:bg-haul-secondary/10 transition"><i
+                            class="fas fa-moon text-haul-secondary text-sm"></i></button>
+                    <button id="rtlToggle"
+                        class="w-9 h-9 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center hover:bg-haul-secondary/10 transition"><i
+                            class="fas fa-exchange-alt text-haul-secondary text-sm"></i></button>
+                    <a href="login.html"
+                        class="flex items-center gap-2 text-gray-700 dark:text-gray-200 hover:text-haul-secondary transition font-medium text-sm"><i
+                            class="fas fa-user-circle text-lg"></i> Login</a>
+                    <a href="signup.html"
+                        class="flex items-center gap-2 bg-haul-secondary hover:bg-haul-primary text-white px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition shadow-md"><i
+                            class="fas fa-user-plus text-sm"></i> Sign Up</a>
+                </div>
+
+                <div class="xl:hidden flex items-center gap-3">
+                    <button id="mobile-menu-button" class="text-gray-700 dark:text-gray-200 p-2 focus:outline-none">
+                        <i id="menu-icon" class="fas fa-bars text-xl"></i>
+                        <i id="close-icon" class="fas fa-times text-xl hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu"
+            class="hidden xl:hidden bg-white dark:bg-haul-dark border-t border-gray-200 dark:border-gray-800 absolute w-full shadow-xl z-50 overflow-y-auto"
+            style="top: 64px; max-height: calc(100vh - 64px);">
+            <div class="px-5 py-5 pb-8 space-y-2">
+                <div class="w-full">
+                    <button id="mobile-home-dropdown-btn"
+                        class="w-full flex justify-between items-center px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-haul-secondary/10 rounded-xl text-sm font-medium transition">
+                        <span>Home</span> <i id="mobile-home-icon"
+                            class="fas fa-chevron-down text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="mobile-home-submenu" class="hidden pl-6 space-y-1 mt-1">
+                        <a href="index.html"
+                            class="block px-4 py-2.5 text-gray-600 dark:text-gray-300 hover:bg-haul-secondary/10 rounded-lg text-sm">Home
+                            1</a>
+                        <a href="home2.html"
+                            class="block px-4 py-2.5 text-gray-600 dark:text-gray-300 hover:bg-haul-secondary/10 rounded-lg text-sm">Home
+                            2</a>
+                    </div>
+                </div>
+                <a href="about.html"
+                    class="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-haul-secondary/10 rounded-xl text-sm font-medium transition">About</a>
+                <a href="service.html"
+                    class="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-haul-secondary/10 rounded-xl text-sm font-medium transition">Service</a>
+                <a href="pricing.html"
+                    class="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-haul-secondary/10 rounded-xl text-sm font-medium transition">Pricing</a>
+                <a href="residential.html"
+                    class="block px-4 py-3 text-haul-secondary bg-haul-secondary/10 rounded-xl text-sm font-medium transition">Residential</a>
+                <a href="commercial.html"
+                    class="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-haul-secondary/10 rounded-xl text-sm font-medium transition">Commercial</a>
+                <a href="contact.html"
+                    class="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-haul-secondary/10 rounded-xl text-sm font-medium transition">Contact
+                    Us</a>
+                <div class="w-full">
+                    <button id="mobile-dashboard-dropdown-btn"
+                        class="w-full flex justify-between items-center px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-haul-secondary/10 rounded-xl text-sm font-medium transition">
+                        <span>Dashboard</span> <i id="mobile-dashboard-icon"
+                            class="fas fa-chevron-down text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="mobile-dashboard-submenu" class="hidden pl-6 space-y-1 mt-1">
+                        <a href="admin.html"
+                            class="block px-4 py-2.5 text-gray-600 dark:text-gray-300 hover:bg-haul-secondary/10 rounded-lg text-sm">Admin</a>
+                        <a href="client.html"
+                            class="block px-4 py-2.5 text-gray-600 dark:text-gray-300 hover:bg-haul-secondary/10 rounded-lg text-sm">Client</a>
+                    </div>
+                </div>
+                <div class="pt-5 mt-5 border-t border-gray-200 dark:border-gray-800">
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                        <button id="mobileThemeToggle"
+                            class="bg-haul-secondary/10 px-4 py-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-2"><i
+                                class="fas fa-moon"></i> Dark/Light</button>
+                        <button id="mobileRtlToggle"
+                            class="bg-haul-secondary/10 px-4 py-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-2"><i
+                                class="fas fa-exchange-alt"></i> RTL</button>
+                    </div>
+                    <a href="login.html"
+                        class="flex items-center justify-center gap-2 bg-haul-primary text-white text-center px-4 py-3.5 rounded-xl text-sm font-semibold uppercase"><i
+                            class="fas fa-user-circle"></i> Login</a>
+                    <a href="signup.html"
+                        class="flex items-center justify-center gap-2 mt-3 bg-haul-secondary text-white text-center px-4 py-3.5 rounded-xl text-sm font-semibold uppercase"><i
+                            class="fas fa-user-plus"></i> Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SECTION 1: HERO - Residential Services -->
+    <section
+        class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-br from-gray-50 to-white dark:from-haul-dark dark:to-gray-900">
+        <div class="absolute inset-0 opacity-10"><img
+                src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?q=80&w=2070&auto=format" alt="Background"
+                class="w-full h-full object-cover"></div>
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-white/80 to-white/95 dark:from-haul-dark/80 dark:to-haul-dark/95">
+        </div>
+        <div class="relative z-10 text-center px-5 max-w-4xl mx-auto">
+            <div class="inline-flex items-center gap-3 mb-6 animate-fade-up opacity-0" style="animation-delay: 0.1s;">
+                <span class="w-12 h-[1px] bg-haul-secondary"></span><span
+                    class="text-haul-secondary text-[10px] sm:text-xs uppercase tracking-[0.3em] font-bold">For
+                    Homeowners</span><span class="w-12 h-[1px] bg-haul-secondary"></span></div>
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold text-gray-900 dark:text-white leading-[1.1] mb-6 animate-fade-up opacity-0"
+                style="animation-delay: 0.3s;">Residential <span class="text-haul-secondary">Junk Removal</span></h1>
+            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-base md:text-lg font-light animate-fade-up opacity-0 px-4"
+                style="animation-delay: 0.5s;">From single items to full home cleanouts — we make decluttering easy,
+                fast, and affordable.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-5 mt-8 animate-fade-up opacity-0"
+                style="animation-delay: 0.7s;"><a href="#"
+                    class="bg-haul-secondary hover:bg-haul-primary text-white px-8 py-3.5 rounded-full text-sm font-bold transition shadow-lg">Get
+                    Free Quote</a><a href="#"
+                    class="border-2 border-haul-secondary text-haul-secondary hover:bg-haul-secondary hover:text-white px-8 py-3.5 rounded-full text-sm font-bold transition">Call
+                    (888) 555-0123</a></div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: Residential Services Grid (6 Services with Images) -->
+    <section class="py-20 lg:py-28 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-5">
+            <div class="text-center mb-14"><span
+                    class="text-haul-secondary text-[10px] tracking-[0.4em] font-bold block mb-3">What We Haul</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white">Residential Services</h2>
+                <div class="w-20 h-[2px] bg-haul-secondary mx-auto mt-5"></div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden service-card"><img
+                        src="assests/res1.jpg"
+                        class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <div class="flex items-center gap-3 mb-2"><i
+                                class="fas fa-couch text-haul-secondary text-xl"></i>
+                            <h3 class="font-bold text-lg">Furniture Removal</h3>
+                        </div>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm">Sofas, mattresses, tables, chairs, dressers
+                            — any size, any condition.</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden service-card"><img
+                        src="assests/res2.png"
+                        class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <div class="flex items-center gap-3 mb-2"><i class="fas fa-tv text-haul-secondary text-xl"></i>
+                            <h3 class="font-bold text-lg">Appliance Disposal</h3>
+                        </div>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm">Refrigerators, washers, dryers, stoves,
+                            dishwashers — safe removal.</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden service-card"><img
+                        src="assests/res_garage.jpg"
+                        class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <div class="flex items-center gap-3 mb-2"><i
+                                class="fas fa-boxes text-haul-secondary text-xl"></i>
+                            <h3 class="font-bold text-lg">Garage Cleanouts</h3>
+                        </div>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm">Declutter your garage — old tools, boxes,
+                            sports equipment, and more.</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden service-card"><img
+                        src="assests/res_yard.png"
+                        class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <div class="flex items-center gap-3 mb-2"><i
+                                class="fas fa-tree text-haul-secondary text-xl"></i>
+                            <h3 class="font-bold text-lg">Yard Waste Removal</h3>
+                        </div>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm">Branches, leaves, grass clippings,
+                            landscaping debris — green disposal.</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden service-card"><img
+                        src="assests/res_estate.png"
+                        class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <div class="flex items-center gap-3 mb-2"><i
+                                class="fas fa-tools text-haul-secondary text-xl"></i>
+                            <h3 class="font-bold text-lg">Estate Cleanouts</h3>
+                        </div>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm">Full property clearance — compassionate,
+                            respectful, and thorough.</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden service-card"><img
+                        src="assests/res_electronics.png"
+                        class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <div class="flex items-center gap-3 mb-2"><i
+                                class="fas fa-recycle text-haul-secondary text-xl"></i>
+                            <h3 class="font-bold text-lg">Electronics Recycling</h3>
+                        </div>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm">TVs, computers, monitors — secure data
+                            destruction and recycling.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: Content Section -->
+    <section class="py-12 lg:py-16 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-4xl mx-auto px-5 text-center">
+            <span class="text-haul-secondary text-[9px] tracking-[0.3em] font-bold block mb-2">Your Home, Reclaimed</span>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">Professional Residential Cleanouts</h2>
+            <div class="w-16 h-[2px] bg-haul-secondary mx-auto mb-6"></div>
+            
+            <div class="space-y-4 text-sm text-gray-600 dark:text-gray-300">
+                <p class="leading-relaxed">
+                    Is clutter taking over your home? At HaulSwift, we specialize in helping homeowners regain control of their living spaces. Whether you're preparing for a move, clearing out an estate, or just doing some much-needed spring cleaning, our team is ready to handle all the heavy lifting.
+                </p>
+                <p class="leading-relaxed">
+                    We understand that your home is your sanctuary. That's why our uniformed professionals treat your property with the utmost respect, ensuring your walls and floors remain pristine while we responsibly dispose of your unwanted items.
+                </p>
+            </div>
+
+            <ul class="mt-8 flex flex-col sm:flex-row justify-center gap-4 sm:gap-8 text-sm">
+                <li class="flex items-center justify-center gap-2">
+                    <i class="fas fa-check-circle text-haul-secondary"></i>
+                    <span class="text-gray-700 dark:text-gray-200 font-medium">Fully licensed and insured</span>
+                </li>
+                <li class="flex items-center justify-center gap-2">
+                    <i class="fas fa-check-circle text-haul-secondary"></i>
+                    <span class="text-gray-700 dark:text-gray-200 font-medium">Eco-friendly disposal</span>
+                </li>
+                <li class="flex items-center justify-center gap-2">
+                    <i class="fas fa-check-circle text-haul-secondary"></i>
+                    <span class="text-gray-700 dark:text-gray-200 font-medium">Zero hidden fees</span>
+                </li>
+            </ul>
+
+            <div class="mt-8">
+                <a href="contact.html" class="bg-haul-secondary hover:bg-haul-primary text-white px-8 py-3 rounded-full text-xs font-bold transition shadow-md inline-flex items-center gap-2">
+                    Book Your Haul <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: Unique Content Section -->
+    <section class="py-20 lg:py-28 bg-haul-primary relative overflow-hidden">
+        <!-- Abstract background shape -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 bg-haul-secondary/20 rounded-full blur-2xl"></div>
+        
+        <div class="max-w-7xl mx-auto px-5 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+                
+                <!-- Left Column: Big Typography -->
+                <div class="lg:col-span-5 text-white">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-[2px] bg-haul-secondary"></div>
+                        <span class="text-[10px] tracking-[0.3em] font-bold uppercase text-haul-secondary">The HaulSwift Difference</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight mb-6">
+                        We Don't Just Haul. <br> <span class="text-haul-secondary italic">We Care.</span>
+                    </h2>
+                    <p class="text-white/80 font-light max-w-sm">
+                        Experience the gold standard of residential junk removal with our dedicated property protection protocols and community-first donation approach.
+                    </p>
+                </div>
+
+                <!-- Right Column: Content Grid -->
+                <div class="lg:col-span-7">
+                    <div class="bg-white/10 backdrop-blur-md border border-white/20 p-8 md:p-10 rounded-3xl text-white shadow-2xl">
+                        <p class="text-base md:text-lg text-white/90 leading-relaxed mb-8 font-light">
+                            Inviting a team into your home requires trust. We've built our entire residential service model around respecting your space, your time, and your peace of mind. Every team member is fully vetted, highly trained, and dedicated to delivering a stress-free experience from the moment we knock on your door.
+                        </p>
+                        
+                        <div class="grid sm:grid-cols-2 gap-8 pt-6 border-t border-white/20">
+                            <div>
+                                <h4 class="text-lg font-bold mb-2 flex items-center gap-2">
+                                    <i class="fas fa-shield-alt text-haul-secondary"></i> Property Protection
+                                </h4>
+                                <p class="text-sm text-white/70 leading-relaxed">
+                                    We use protective floor runners and door jamb covers to ensure zero damage to your home while we move heavy items.
+                                </p>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold mb-2 flex items-center gap-2">
+                                    <i class="fas fa-hand-holding-heart text-haul-secondary"></i> Donation First
+                                </h4>
+                                <p class="text-sm text-white/70 leading-relaxed">
+                                    Up to 70% of the items we haul are kept out of landfills. We partner with local charities to give your old items a second life.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: Pricing Guide + What's Included -->
+    <section class="py-20 lg:py-28 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-5">
+            <div class="text-center mb-12"><span
+                    class="text-haul-secondary text-[10px] tracking-[0.4em] font-bold block mb-3">Affordable
+                    Rates</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white">Residential Pricing Guide</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1973&auto=format"
+                        class="rounded-2xl shadow-xl w-full"></div>
+                <div>
+                    <div class="space-y-3">
+                        <div
+                            class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
+                            <span class="font-bold">Small Load (Studio/1BR)</span><span
+                                class="text-haul-secondary font-bold">$79</span></div>
+                        <div
+                            class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
+                            <span class="font-bold">Medium Load (2-3BR Home)</span><span
+                                class="text-haul-secondary font-bold">$149</span></div>
+                        <div
+                            class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2">
+                            <span class="font-bold">Large Load (4+BR Home)</span><span
+                                class="text-haul-secondary font-bold">$249</span></div>
+                        <div class="flex justify-between items-center pb-2"><span class="font-bold">Full House
+                                Cleanout</span><span class="text-haul-secondary font-bold">Call for Quote</span></div>
+                    </div>
+                    <div class="mt-6 bg-haul-secondary/10 p-4 rounded-xl">
+                        <p class="text-sm"><i class="fas fa-check-circle text-haul-secondary mr-2"></i> Free on-site
+                            estimate • No hidden fees • We donate usable items</p>
+                    </div><a href="#"
+                        class="inline-block mt-6 bg-haul-secondary hover:bg-haul-primary text-white px-6 py-2.5 rounded-full text-sm font-bold transition">Get
+                        Your Free Quote →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: Customer Testimonials + CTA -->
+    <section class="py-20 lg:py-28 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-5">
+            <div class="text-center mb-12"><i class="fas fa-star text-3xl text-haul-secondary mb-2"></i>
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white">What Our Customers Say</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl testimonial-card">
+                    <div class="flex gap-1 mb-3"><i class="fas fa-star text-haul-secondary"></i><i
+                            class="fas fa-star text-haul-secondary"></i><i
+                            class="fas fa-star text-haul-secondary"></i><i
+                            class="fas fa-star text-haul-secondary"></i><i class="fas fa-star text-haul-secondary"></i>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm italic">"HaulSwift cleared out my entire garage
+                        in under 2 hours. Professional, friendly, and the price was exactly what they quoted."</p>
+                    <div class="mt-3 flex items-center gap-3"><img
+                            src="https://randomuser.me/api/portraits/women/68.jpg"
+                            class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <p class="font-bold text-sm">Jennifer M.</p>
+                            <p class="text-xs text-gray-400">Homeowner</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl testimonial-card">
+                    <div class="flex gap-1 mb-3"><i class="fas fa-star text-haul-secondary"></i><i
+                            class="fas fa-star text-haul-secondary"></i><i
+                            class="fas fa-star text-haul-secondary"></i><i
+                            class="fas fa-star text-haul-secondary"></i><i class="fas fa-star text-haul-secondary"></i>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm italic">"They helped my parents with an estate
+                        cleanout. So compassionate and efficient. Highly recommend!"</p>
+                    <div class="mt-3 flex items-center gap-3"><img src="https://randomuser.me/api/portraits/men/32.jpg"
+                            class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <p class="font-bold text-sm">David R.</p>
+                            <p class="text-xs text-gray-400">Estate Cleanout</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl testimonial-card">
+                    <div class="flex gap-1 mb-3"><i class="fas fa-star text-haul-secondary"></i><i
+                            class="fas fa-star text-haul-secondary"></i><i
+                            class="fas fa-star text-haul-secondary"></i><i
+                            class="fas fa-star text-haul-secondary"></i><i class="fas fa-star text-haul-secondary"></i>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm italic">"Same-day service! Called at 10am, they
+                        were here by 2pm. Took my old fridge and couch. Will use again."</p>
+                    <div class="mt-3 flex items-center gap-3"><img
+                            src="https://randomuser.me/api/portraits/women/45.jpg"
+                            class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <p class="font-bold text-sm">Lisa T.</p>
+                            <p class="text-xs text-gray-400">Same-Day Service</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-haul-primary text-white rounded-3xl p-8 text-center"><i
+                    class="fas fa-home text-3xl mb-3"></i>
+                <h3 class="text-2xl font-bold mb-2">Ready to Declutter Your Home?</h3>
+                <p class="text-white/80 mb-4">Get a free, no-obligation quote today</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center"><a href="#"
+                        class="bg-haul-secondary hover:bg-white hover:text-haul-primary text-white px-8 py-3 rounded-full text-sm font-bold transition">Call
+                        (888) 555-0123</a><a href="#"
+                        class="border-2 border-white hover:bg-white hover:text-haul-primary text-white px-8 py-3 rounded-full text-sm font-bold transition">Get
+                        Free Quote →</a></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-white border-t border-gray-200 dark:border-gray-200 dark:border-gray-800 pt-20 pb-8">
+        <div class="max-w-[1400px] mx-auto px-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
+                <div class="lg:col-span-5">
+                    <a href="index.html" class="flex items-center gap-2 group mb-5">
+                            <i class="fas fa-dumpster text-2xl text-haul-secondary group-hover:text-haul-primary transition-colors"></i>
+                            <span class="text-2xl font-bold tracking-tight text-gray-800 dark:text-white">Haul<span class="text-haul-secondary">Swift</span></span>
+                        </a>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm max-w-md">Professional junk removal and hauling services —
+                        residential, commercial, and construction debris. Fast, affordable, eco-friendly.</p>
+                    <div class="flex gap-4 mt-6"><a href="#"
+                            class="w-9 h-9 rounded-full border border-gray-300 dark:border-gray-700 flex items-center justify-center hover:border-haul-secondary"><i
+                                class="fab fa-facebook-f text-sm"></i></a><a href="#"
+                            class="w-9 h-9 rounded-full border border-gray-300 dark:border-gray-700 flex items-center justify-center hover:border-haul-secondary"><i
+                                class="fab fa-instagram text-sm"></i></a><a href="#"
+                            class="w-9 h-9 rounded-full border border-gray-300 dark:border-gray-700 flex items-center justify-center hover:border-haul-secondary"><i
+                                class="fab fa-yelp text-sm"></i></a></div>
+                </div>
+                <div class="lg:col-span-3">
+                    <h4 class="text-[10px] font-bold uppercase tracking-[0.2em] mb-6 text-haul-secondary">Residential
+                    </h4>
+                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                        <li><a href="#" class="hover:text-haul-secondary transition"><i class="fas fa-chevron-right mr-2 text-[10px]"></i>Furniture Removal</a></li>
+                        <li><a href="#" class="hover:text-haul-secondary transition"><i class="fas fa-chevron-right mr-2 text-[10px]"></i>Appliance Disposal</a></li>
+                        <li><a href="#" class="hover:text-haul-secondary transition"><i class="fas fa-chevron-right mr-2 text-[10px]"></i>Garage Cleanouts</a></li>
+                        <li><a href="#" class="hover:text-haul-secondary transition"><i class="fas fa-chevron-right mr-2 text-[10px]"></i>Estate Cleanouts</a></li>
+                    </ul>
+                </div>
+                <div class="lg:col-span-4">
+                    <h4 class="text-[10px] font-bold uppercase tracking-[0.2em] mb-6 text-haul-secondary">Contact</h4>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400 text-sm">
+                        <li><a href="tel:+18885550123" class="hover:text-haul-secondary transition"><i class="fas fa-phone mr-2"></i>(888) 555-0123</a>
+                        </li>
+                        <li><a href="mailto:hello@haulswift.com"
+                                class="hover:text-haul-secondary transition"><i class="fas fa-envelope mr-2"></i>hello@haulswift.com</a></li>
+                        <li><i class="fas fa-clock mr-2"></i>Mon-Sat: 7am - 7pm</li>
+                        <li>Emergency services available</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 dark:border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-[10px] uppercase tracking-widest">© 2026 HaulSwift — Professional Junk
+                    Removal. All rights reserved.</p>
+                <div class="flex gap-6 text-[10px] text-gray-500 uppercase"><a href="#"
+                        class="hover:text-haul-secondary transition">Privacy</a><a href="#"
+                        class="hover:text-haul-secondary transition">Terms</a><a href="#"
+                        class="hover:text-haul-secondary transition">Accessibility</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+            (function () {
+                const themeToggle = document.getElementById('themeToggle');
+                const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+                const html = document.documentElement;
+                function toggleTheme() { html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); updateThemeIcon(); }
+                function updateThemeIcon() { const isDark = html.classList.contains('dark'); const icons = document.querySelectorAll('#themeToggle i, #mobileThemeToggle i'); icons.forEach(icon => { if (isDark) icon.className = 'fas fa-sun text-haul-secondary text-sm'; else icon.className = 'fas fa-moon text-haul-secondary text-sm'; }); }
+                if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+                if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+                if (localStorage.getItem('theme') === 'dark') html.classList.add('dark');
+                updateThemeIcon();
+                const rtlBtn = document.getElementById('rtlToggle');
+                const mobileRtl = document.getElementById('mobileRtlToggle');
+                function toggleRTL() { if (html.getAttribute('dir') === 'rtl') html.removeAttribute('dir'); else html.setAttribute('dir', 'rtl'); localStorage.setItem('direction', html.getAttribute('dir') || 'ltr'); }
+                if (rtlBtn) rtlBtn.addEventListener('click', toggleRTL);
+                if (mobileRtl) mobileRtl.addEventListener('click', toggleRTL);
+                if (localStorage.getItem('direction') === 'rtl') html.setAttribute('dir', 'rtl');
+                const menuBtn = document.getElementById('mobile-menu-button');
+                const mobileMenu = document.getElementById('mobile-menu');
+                const menuIcon = document.getElementById('menu-icon');
+                const closeIcon = document.getElementById('close-icon');
+                const body = document.body;
+                function closeMobileMenu() { if (mobileMenu && !mobileMenu.classList.contains('hidden')) { mobileMenu.classList.add('hidden'); if (menuIcon && closeIcon) { menuIcon.classList.remove('hidden'); closeIcon.classList.add('hidden'); } body.classList.remove('menu-open'); body.style.overflow = ''; } }
+                function openMobileMenu() { if (mobileMenu && mobileMenu.classList.contains('hidden')) { mobileMenu.classList.remove('hidden'); if (menuIcon && closeIcon) { menuIcon.classList.add('hidden'); closeIcon.classList.remove('hidden'); } body.classList.add('menu-open'); body.style.overflow = 'hidden'; } }
+                if (menuBtn && mobileMenu) { menuBtn.addEventListener('click', (e) => { e.stopPropagation(); mobileMenu.classList.contains('hidden') ? openMobileMenu() : closeMobileMenu(); }); document.querySelectorAll('#mobile-menu a, #mobile-menu button').forEach(link => { if (link.id !== 'mobile-home-dropdown-btn' && link.id !== 'mobile-dashboard-dropdown-btn') link.addEventListener('click', closeMobileMenu); }); window.addEventListener('resize', () => { if (window.innerWidth >= 1280 && !mobileMenu.classList.contains('hidden')) closeMobileMenu(); }); }
+                const homeBtn = document.getElementById('mobile-home-dropdown-btn');
+                const homeSub = document.getElementById('mobile-home-submenu');
+                const homeIcon = document.getElementById('mobile-home-icon');
+                if (homeBtn && homeSub) { homeBtn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); homeSub.classList.toggle('hidden'); if (homeIcon) homeIcon.classList.toggle('rotate'); }); }
+                const dashBtn = document.getElementById('mobile-dashboard-dropdown-btn');
+                const dashSub = document.getElementById('mobile-dashboard-submenu');
+                const dashIcon = document.getElementById('mobile-dashboard-icon');
+                if (dashBtn && dashSub) { dashBtn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); dashSub.classList.toggle('hidden'); if (dashIcon) dashIcon.classList.toggle('rotate'); }); }
+            })();
+    </script>
+</body>
+
+</html>

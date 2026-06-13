@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Contact Us | HaulSwift – Professional Junk Removal & Hauling</title>
+    <link rel="icon" href="assests/favicon.png" type="image/png">
+    <meta name="description"
+        content="Contact HaulSwift for professional junk removal and hauling services. Get a free quote, schedule pickup, or ask questions. Same-day service available.">
+
+    <!-- Tailwind CSS + Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'haul-primary': '#1B5E20',
+                        'haul-secondary': '#F57C00',
+                        'haul-accent': '#FFB300',
+                        'haul-dark': '#1a1a1a',
+                        'haul-light': '#F5F5F5',
+                        'haul-gray': '#424242',
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatTruck {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(2deg);
+            }
+        }
+
+        .animate-fade-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-float {
+            animation: floatTruck 6s ease-in-out infinite;
+        }
+
+        #mobile-menu {
+            max-height: calc(100vh - 64px);
+            overflow-y: auto;
+            transition: all 0.3s ease;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .mobile-dropdown-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-dropdown-icon.rotate {
+            transform: rotate(180deg);
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        @media (max-width: 1280px) {
+            .desktop-nav {
+                display: none;
+            }
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #F57C00;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        [dir="rtl"] .nav-link::after {
+            left: auto;
+            right: 0;
+        }
+
+        .contact-card {
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .floating-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.1;
+            font-size: 24px;
+        }
+
+        .dark .bg-white\/95 {
+            background-color: #0a0a0a !important;
+        }
+
+        .dark .bg-gray-50 {
+            background-color: #1a1a1a !important;
+        }
+
+        .dark .text-gray-600 {
+            color: #cbd5e1 !important;
+        }
+
+        .dark h1,
+        .dark h2,
+        .dark h3,
+        .dark h4 {
+            color: #ffffff !important;
+        }
+
+        nav {
+            background-color: #ffffff !important;
+        }
+
+        .dark nav {
+            background-color: #0a0a0a !important;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            border-radius: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .map-container iframe {
+                min-height: 250px;
+            }
+        }
+
+        .faq-item {
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateX(5px);
+        }
+
+        [dir="rtl"] .faq-item:hover {
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-800 dark:bg-haul-dark dark:text-gray-100 font-sans antialiased">
+
+    <!-- Floating particles -->
+    <div class="floating-particle left-[5%] top-[15%] animate-float">📞</div>
+    <div class="floating-particle right-[8%] top-[25%] animate-float" style="animation-delay: 2s;">🚛</div>
+    <div class="floating-particle left-[10%] bottom-[20%] animate-float" style="animation-delay: 4s;">📍</div>
+    <div class="floating-particle right-[12%] bottom-[30%] animate-float" style="animation-delay: 3s;">✉️</div>
+
+    <!-- HEADER -->
+    <nav
+        class="fixed w-full top-0 z-50 bg-white dark:bg-haul-dark border-b border-gray-200 dark:border-gray-800 shadow-md transition-all duration-300">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="flex items-center gap-2 group">
+                        <i class="fas fa-dumpster text-2xl text-haul-secondary group-hover:text-haul-primary transition-colors"></i>
+                        <span class="text-2xl font-bold tracking-tight text-gray-800 dark:text-white">Haul<span class="text-haul-secondary">Swift</span></span>
+                    </a>
+                </div>
+
+                <div class="hidden xl:flex items-center justify-center flex-1 mx-6">
+                    <div class="flex items-center gap-4">
+                        <div class="relative group">
+                            <a href="index.html"
+                                class="nav-link text-gray-700 dark:text-gray-200 hover:text-haul-secondary font-medium text-sm py-2 inline-flex items-center gap-1">
+                                Home <i class="fas fa-chevron-down text-[10px]"></i>
+                            </a>
+                            <div
+                                class="absolute top-full left-0 mt-2 w-36 bg-white dark:bg-haul-dark border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 overflow-hidden">
+                                <a href="index.html"
+                                    class="block px-4 py-3 text-sm hover:bg-haul-secondary/10 transition-colors">Home
+                                    1</a>
+                                <a href="index.html"
+                                    class="block px-4 py-3 text-sm hover:bg-haul-secondary/10 transition-colors border-t border-gray-100 dark:border-gray-800">Home
+                                    2</a>
+                            </div>
+                        </div>
+                        <a href="about.html"
+                            class="nav-link text-gray-700 dark:text-gray-200 hover:text-haul-secondary font-medium text-sm py-2">About</a>
+                        <a href="service.html"
+                            class="nav-link text-gray-700 dark:text-gray-200 hover:text-haul-secondary font-medium text-sm py-2">Service</a>
+                        <a href="pricing.html"
+                            class="nav-link text-gray-700 dark:text-gray-200 hover:text-haul-secondary font-medium text-sm py-2">Pricing</a>
+                        <a href="residential.html"
+                            class="nav-link text-gray-700 dark:text-gray-200 hover:text-haul-secondary font-medium text-sm py-2">Residential</a>
+                        <a href="commercial.html"
+                            class="nav-link text-gray-700 dark:text-gray-200 hover:text-haul-secondary font-medium text-sm py-2">Commercial</a>
+                        <a href="contact.html"
+                            class="nav-link active text-haul-secondary font-medium text-sm py-2">Contact Us</a>
+                        <div class="relative group">
+                            <a href="admin.html"
+                                class="nav-link text-gray-700 dark:text-gray-200 hover:text-haul-secondary font-medium text-sm py-2 inline-flex items-center gap-1">
+                                Dashboard <i class="fas fa-chevron-down text-[10px]"></i>
+                            </a>
+                            <div
+                                class="absolute top-full left-0 mt-2 w-36 bg-white dark:bg-haul-dark border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 overflow-hidden">
+                                <a href="admin.html"
+                                    class="block px-4 py-3 text-sm hover:bg-haul-secondary/10 transition-colors">Admin</a>
+                                <a href="client.html"
+                                    class="block px-4 py-3 text-sm hover:bg-haul-secondary/10 transition-colors border-t border-gray-100 dark:border-gray-800">Client</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hidden xl:flex items-center gap-3">
+                    <button id="themeToggle"
+                        class="w-9 h-9 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center hover:bg-haul-secondary/10 transition"><i
+                            class="fas fa-moon text-haul-secondary text-sm"></i></button>
+                    <button id="rtlToggle"
+                        class="w-9 h-9 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center hover:bg-haul-secondary/10 transition"><i
+                            class="fas fa-exchange-alt text-haul-secondary text-sm"></i></button>
+                    <a href="login.html"
+                        class="flex items-center gap-2 text-gray-700 dark:text-gray-200 hover:text-haul-secondary transition font-medium text-sm"><i
+                            class="fas fa-user-circle text-lg"></i> Login</a>
+                    <a href="signup.html"
+                        class="flex items-center gap-2 bg-haul-secondary hover:bg-haul-primary text-white px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition shadow-md"><i
+                            class="fas fa-user-plus text-sm"></i> Sign Up</a>
+                </div>
+
+                <div class="xl:hidden flex items-center gap-3">
+                    <button id="mobile-menu-button" class="text-gray-700 dark:text-gray-200 p-2 focus:outline-none">
+                        <i id="menu-icon" class="fas fa-bars text-xl"></i>
+                        <i id="close-icon" class="fas fa-times text-xl hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu"
+            class="hidden xl:hidden bg-white dark:bg-haul-dark border-t border-gray-200 dark:border-gray-800 absolute w-full shadow-xl z-50 overflow-y-auto"
+            style="top: 64px; max-height: calc(100vh - 64px);">
+            <div class="px-5 py-5 pb-8 space-y-2">
+                <div class="w-full">
+                    <button id="mobile-home-dropdown-btn"
+                        class="w-full flex justify-between items-center px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-haul-secondary/10 rounded-xl text-sm font-medium transition">
+                        <span>Home</span> <i id="mobile-home-icon"
+                            class="fas fa-chevron-down text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="mobile-home-submenu" class="hidden pl-6 space-y-1 mt-1">
+                        <a href="index.html"
+                            class="block px-4 py-2.5 text-gray-600 dark:text-gray-300 hover:bg-haul-secondary/10 rounded-lg text-sm">Home
+                            1</a>
+                        <a href="index.html"
+                            class="block px-4 py-2.5 text-gray-600 dark:text-gray-300 hover:bg-haul-secondary/10 rounded-lg text-sm">Home
+                            2</a>
+                    </div>
+                </div>
+                <a href="about.html"
+                    class="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-haul-secondary/10 rounded-xl text-sm font-medium transition">About</a>
+                <a href="service.html"
+                    class="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-haul-secondary/10 rounded-xl text-sm font-medium transition">Service</a>
+                <a href="pricing.html"
+                    class="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-haul-secondary/10 rounded-xl text-sm font-medium transition">Pricing</a>
+                <a href="residential.html"
+                    class="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-haul-secondary/10 rounded-xl text-sm font-medium transition">Residential</a>
+                <a href="commercial.html"
+                    class="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-haul-secondary/10 rounded-xl text-sm font-medium transition">Commercial</a>
+                <a href="contact.html"
+                    class="block px-4 py-3 text-haul-secondary bg-haul-secondary/10 rounded-xl text-sm font-medium transition">Contact
+                    Us</a>
+                <div class="w-full">
+                    <button id="mobile-dashboard-dropdown-btn"
+                        class="w-full flex justify-between items-center px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-haul-secondary/10 rounded-xl text-sm font-medium transition">
+                        <span>Dashboard</span> <i id="mobile-dashboard-icon"
+                            class="fas fa-chevron-down text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="mobile-dashboard-submenu" class="hidden pl-6 space-y-1 mt-1">
+                        <a href="admin.html"
+                            class="block px-4 py-2.5 text-gray-600 dark:text-gray-300 hover:bg-haul-secondary/10 rounded-lg text-sm">Admin</a>
+                        <a href="client.html"
+                            class="block px-4 py-2.5 text-gray-600 dark:text-gray-300 hover:bg-haul-secondary/10 rounded-lg text-sm">Client</a>
+                    </div>
+                </div>
+                <div class="pt-5 mt-5 border-t border-gray-200 dark:border-gray-800">
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                        <button id="mobileThemeToggle"
+                            class="bg-haul-secondary/10 px-4 py-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-2"><i
+                                class="fas fa-moon"></i> Dark/Light</button>
+                        <button id="mobileRtlToggle"
+                            class="bg-haul-secondary/10 px-4 py-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-2"><i
+                                class="fas fa-exchange-alt"></i> RTL</button>
+                    </div>
+                    <a href="login.html"
+                        class="flex items-center justify-center gap-2 bg-haul-primary text-white text-center px-4 py-3.5 rounded-xl text-sm font-semibold uppercase"><i
+                            class="fas fa-user-circle"></i> Login</a>
+                    <a href="signup.html"
+                        class="flex items-center justify-center gap-2 mt-3 bg-haul-secondary text-white text-center px-4 py-3.5 rounded-xl text-sm font-semibold uppercase"><i
+                            class="fas fa-user-plus"></i> Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SECTION 1: HERO - Contact -->
+    <section
+        class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-br from-gray-50 to-white dark:from-haul-dark dark:to-gray-900">
+        <div class="absolute inset-0 opacity-10"><img
+                src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2070&auto=format" alt="Contact"
+                class="w-full h-full object-cover"></div>
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-white/80 to-white/95 dark:from-haul-dark/80 dark:to-haul-dark/95">
+        </div>
+        <div class="relative z-10 text-center px-5 max-w-4xl mx-auto">
+            <div class="inline-flex items-center gap-3 mb-6 animate-fade-up opacity-0" style="animation-delay: 0.1s;">
+                <span class="w-12 h-[1px] bg-haul-secondary"></span><span
+                    class="text-haul-secondary text-[10px] sm:text-xs uppercase tracking-[0.3em] font-bold">Get In
+                    Touch</span><span class="w-12 h-[1px] bg-haul-secondary"></span></div>
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold text-gray-900 dark:text-white leading-[1.1] mb-6 animate-fade-up opacity-0"
+                style="animation-delay: 0.3s;">Let's <span class="text-haul-secondary">Connect</span></h1>
+            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-base md:text-lg font-light animate-fade-up opacity-0 px-4"
+                style="animation-delay: 0.5s;">Have questions? Need a quote? Ready to book? Our team is here to help.
+                Reach out any time.</p>
+        </div>
+    </section>
+
+    <!-- SECTION 2: Contact Methods (4 Cards) -->
+    <section class="py-20 lg:py-24 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-5">
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl text-center contact-card">
+                    <div
+                        class="w-16 h-16 bg-haul-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-phone text-2xl text-haul-secondary"></i></div>
+                    <h3 class="font-bold text-lg">Call Us</h3>
+                    <p class="text-sm text-gray-500 mb-2">Mon-Sat: 7am-7pm</p><a href="tel:+18885550123"
+                        class="text-haul-secondary font-semibold text-lg">(888) 555-0123</a>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl text-center contact-card">
+                    <div
+                        class="w-16 h-16 bg-haul-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-envelope text-2xl text-haul-secondary"></i></div>
+                    <h3 class="font-bold text-lg">Email Us</h3>
+                    <p class="text-sm text-gray-500 mb-2">24/7 response</p><a href="mailto:hello@haulswift.com"
+                        class="text-haul-secondary font-semibold text-sm">hello@haulswift.com</a>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl text-center contact-card">
+                    <div
+                        class="w-16 h-16 bg-haul-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-comment-dots text-2xl text-haul-secondary"></i></div>
+                    <h3 class="font-bold text-lg">Live Chat</h3>
+                    <p class="text-sm text-gray-500 mb-2">Instant support</p><button
+                        onclick="alert('Chat window would open here. Our team is online Mon-Fri 8am-6pm.')"
+                        class="text-haul-secondary font-semibold">Start Chat →</button>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl text-center contact-card">
+                    <div
+                        class="w-16 h-16 bg-haul-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fab fa-facebook-messenger text-2xl text-haul-secondary"></i></div>
+                    <h3 class="font-bold text-lg">Message Us</h3>
+                    <p class="text-sm text-gray-500 mb-2">Social media</p><a href="https://facebook.com"
+                        class="text-haul-secondary font-semibold">@haulswift</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: Contact Form + Map -->
+    <section class="py-20 lg:py-24 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-6xl mx-auto px-5">
+            <div class="grid lg:grid-cols-2 gap-10">
+                <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 md:p-8 shadow-xl">
+                    <h3 class="font-serif text-2xl font-bold mb-5">Send Us a Message</h3>
+                    <form id="contactForm"
+                        onsubmit="event.preventDefault(); alert('Thanks for reaching out! Our team will respond within 24 hours.');">
+                        <div class="grid md:grid-cols-2 gap-4 mb-4"><input type="text" placeholder="Full Name"
+                                class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:outline-none focus:border-haul-secondary text-sm"
+                                required><input type="text" placeholder="Company (optional)"
+                                class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:outline-none focus:border-haul-secondary text-sm">
+                        </div>
+                        <input type="email" placeholder="Email Address"
+                            class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:outline-none focus:border-haul-secondary text-sm mb-4"
+                            required>
+                        <input type="tel" placeholder="Phone Number"
+                            class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:outline-none focus:border-haul-secondary text-sm mb-4">
+                        <select
+                            class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:outline-none focus:border-haul-secondary text-sm mb-4">
+                            <option>I need help with...</option>
+                            <option>Residential Junk Removal</option>
+                            <option>Commercial Hauling</option>
+                            <option>Construction Debris</option>
+                            <option>Recurring Service</option>
+                            <option>Free Quote</option>
+                            <option>Other</option>
+                        </select>
+                        <textarea placeholder="Tell us about your junk removal needs..." rows="4"
+                            class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:outline-none focus:border-haul-secondary text-sm mb-4"
+                            required></textarea>
+                        <button type="submit"
+                            class="w-full bg-haul-secondary hover:bg-haul-primary text-white px-6 py-3 rounded-xl text-sm uppercase tracking-widest font-bold transition">Send
+                            Message →</button>
+                    </form>
+                </div>
+                <div class="space-y-5">
+                    <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-xl"><i
+                            class="fas fa-map-marker-alt text-2xl text-haul-secondary mb-3"></i>
+                        <h3 class="font-serif text-xl font-bold mb-2">Visit Our Office</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-3">742 E. 3rd Street,
+                            Suite B<br>Los Angeles, CA 90013</p>
+                        <p class="text-xs text-gray-500">*Office by appointment only — call before visiting</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-xl"><i
+                            class="fas fa-clock text-2xl text-haul-secondary mb-3"></i>
+                        <h3 class="font-serif text-xl font-bold mb-2">Business Hours</h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between"><span>Monday - Friday</span><span
+                                    class="font-semibold">7:00 AM - 7:00 PM</span></div>
+                            <div class="flex justify-between"><span>Saturday</span><span class="font-semibold">8:00 AM -
+                                    5:00 PM</span></div>
+                            <div class="flex justify-between"><span>Sunday</span><span class="text-gray-400">Closed
+                                    (Emergency only)</span></div>
+                        </div>
+                    </div>
+                    <div class="bg-haul-secondary/10 dark:bg-haul-secondary/5 rounded-2xl p-6 text-center"><i
+                            class="fas fa-truck-fast text-2xl text-haul-secondary mb-2"></i>
+                        <p class="font-bold">Emergency Service Available</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Call 24/7 for urgent cleanouts</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: Google Map Location -->
+    <section class="py-20 lg:py-24 bg-white dark:bg-gray-900">
+        <div class="max-w-6xl mx-auto px-5">
+            <div class="text-center mb-10"><span
+                    class="text-haul-secondary text-[10px] tracking-[0.4em] font-bold block mb-3">Find Us</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white">Service Area</h2>
+                <div class="w-20 h-[2px] bg-haul-secondary mx-auto mt-5"></div>
+            </div>
+            <div class="map-container rounded-2xl overflow-hidden shadow-2xl border-2 border-haul-secondary/20"><iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.875014206046!2d-118.24368498478574!3d34.052234226145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2sLos%20Angeles%2C%20CA!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+            <div class="flex flex-wrap justify-center gap-6 mt-6 text-sm text-gray-600 dark:text-gray-300"><span><i
+                        class="fas fa-map-pin text-haul-secondary mr-1"></i> Los Angeles County</span><span><i
+                        class="fas fa-map-pin text-haul-secondary mr-1"></i> Orange County</span><span><i
+                        class="fas fa-map-pin text-haul-secondary mr-1"></i> San Bernardino</span><span><i
+                        class="fas fa-map-pin text-haul-secondary mr-1"></i> Riverside</span><span><i
+                        class="fas fa-map-pin text-haul-secondary mr-1"></i> Ventura County</span></div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: FAQ Section -->
+    <section class="py-20 lg:py-24 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-5xl mx-auto px-5">
+            <div class="text-center mb-10"><span
+                    class="text-haul-secondary text-[10px] tracking-[0.4em] font-bold block mb-3">Quick Answers</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white">Frequently Asked Questions</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-white dark:bg-gray-900 p-5 rounded-xl faq-item">
+                    <h3 class="font-bold mb-2">How quickly can you come out?</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">We offer same-day service for calls received
+                        before noon. Emergency service available 24/7.</p>
+                </div>
+                <div class="bg-white dark:bg-gray-900 p-5 rounded-xl faq-item">
+                    <h3 class="font-bold mb-2">Do you provide free estimates?</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">Yes! All quotes are free and no-obligation.
+                        We'll give you a firm price before any work begins.</p>
+                </div>
+                <div class="bg-white dark:bg-gray-900 p-5 rounded-xl faq-item">
+                    <h3 class="font-bold mb-2">What areas do you serve?</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">Greater Los Angeles area, including Orange
+                        County, San Bernardino, Riverside, and Ventura County.</p>
+                </div>
+                <div class="bg-white dark:bg-gray-900 p-5 rounded-xl faq-item">
+                    <h3 class="font-bold mb-2">Do you recycle or donate items?</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">Absolutely! We donate usable furniture and
+                        appliances, and recycle electronics, metal, and more.</p>
+                </div>
+                <div class="bg-white dark:bg-gray-900 p-5 rounded-xl faq-item">
+                    <h3 class="font-bold mb-2">Are you licensed and insured?</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">Yes — fully licensed, bonded, and insured for
+                        your peace of mind.</p>
+                </div>
+                <div class="bg-white dark:bg-gray-900 p-5 rounded-xl faq-item">
+                    <h3 class="font-bold mb-2">What payment methods do you accept?</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">Cash, credit card, debit card, Zelle, Venmo, and
+                        company checks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: CTA - Request Quote -->
+    <section class="py-20 lg:py-24 bg-haul-primary text-white">
+        <div class="max-w-5xl mx-auto px-5 text-center"><i class="fas fa-clipboard-list text-4xl mb-4"></i>
+            <h2 class="text-3xl md:text-5xl font-bold mb-4">Ready to Clear the Clutter?</h2>
+            <p class="text-white/80 max-w-2xl mx-auto mb-8">Get a free, no-obligation quote today. Our team responds
+                within 30 minutes.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center"><a href="tel:+18885550123"
+                    class="bg-haul-secondary hover:bg-white hover:text-haul-primary text-white px-8 py-3.5 rounded-full text-sm font-bold transition shadow-md">Call
+                    (888) 555-0123</a><a href="contact.html"
+                    class="border-2 border-white hover:bg-white hover:text-haul-primary text-white px-8 py-3.5 rounded-full text-sm font-bold transition">Request
+                    Quote →</a></div>
+            <p class="text-white/60 text-xs mt-6">No obligation • Same-day service available • Licensed & insured</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-white border-t border-gray-200 dark:border-gray-200 dark:border-gray-800 pt-20 pb-8">
+        <div class="max-w-[1400px] mx-auto px-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
+                <div class="lg:col-span-5">
+                    <a href="index.html" class="flex items-center gap-2 group mb-5">
+                            <i class="fas fa-dumpster text-2xl text-haul-secondary group-hover:text-haul-primary transition-colors"></i>
+                            <span class="text-2xl font-bold tracking-tight text-gray-800 dark:text-white">Haul<span class="text-haul-secondary">Swift</span></span>
+                        </a>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm max-w-md">Professional junk removal and hauling services —
+                        residential, commercial, and construction debris. Fast, affordable, eco-friendly.</p>
+                    <div class="flex gap-4 mt-6"><a href="https://facebook.com"
+                            class="w-9 h-9 rounded-full border border-gray-300 dark:border-gray-700 flex items-center justify-center hover:border-haul-secondary"><i
+                                class="fab fa-facebook-f text-sm"></i></a><a href="https://instagram.com"
+                            class="w-9 h-9 rounded-full border border-gray-300 dark:border-gray-700 flex items-center justify-center hover:border-haul-secondary"><i
+                                class="fab fa-instagram text-sm"></i></a><a href="https://yelp.com"
+                            class="w-9 h-9 rounded-full border border-gray-300 dark:border-gray-700 flex items-center justify-center hover:border-haul-secondary"><i
+                                class="fab fa-yelp text-sm"></i></a></div>
+                </div>
+                <div class="lg:col-span-3">
+                    <h4 class="text-[10px] font-bold uppercase tracking-[0.2em] mb-6 text-haul-secondary">Contact</h4>
+                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                        <li><a href="tel:+18885550123" class="hover:text-haul-secondary transition"><i class="fas fa-phone mr-2"></i>(888) 555-0123</a>
+                        </li>
+                        <li><a href="mailto:hello@haulswift.com"
+                                class="hover:text-haul-secondary transition"><i class="fas fa-envelope mr-2"></i>hello@haulswift.com</a></li>
+                        <li><i class="fas fa-map-marker-alt mr-2 mt-1"></i>742 E. 3rd Street, Suite B</li>
+                        <li>Los Angeles, CA 90013</li>
+                    </ul>
+                </div>
+                <div class="lg:col-span-4">
+                    <h4 class="text-[10px] font-bold uppercase tracking-[0.2em] mb-6 text-haul-secondary">Hours</h4>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400 text-sm">
+                        <li><i class="fas fa-clock mr-2"></i>Mon-Fri: 7am - 7pm</li>
+                        <li><i class="fas fa-calendar-day mr-2"></i>Saturday: 8am - 5pm</li>
+                        <li>Emergency services available</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 dark:border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-[10px] uppercase tracking-widest">© 2026 HaulSwift — Professional Junk
+                    Removal. All rights reserved.</p>
+                <div class="flex gap-6 text-[10px] text-gray-500 uppercase"><a href="about.html"
+                        class="hover:text-haul-secondary transition">Privacy</a><a href="about.html"
+                        class="hover:text-haul-secondary transition">Terms</a><a href="about.html"
+                        class="hover:text-haul-secondary transition">Accessibility</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+            (function () {
+                const themeToggle = document.getElementById('themeToggle');
+                const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+                const html = document.documentElement;
+                function toggleTheme() { html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); updateThemeIcon(); }
+                function updateThemeIcon() { const isDark = html.classList.contains('dark'); const icons = document.querySelectorAll('#themeToggle i, #mobileThemeToggle i'); icons.forEach(icon => { if (isDark) icon.className = 'fas fa-sun text-haul-secondary text-sm'; else icon.className = 'fas fa-moon text-haul-secondary text-sm'; }); }
+                if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+                if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+                if (localStorage.getItem('theme') === 'dark') html.classList.add('dark');
+                updateThemeIcon();
+                const rtlBtn = document.getElementById('rtlToggle');
+                const mobileRtl = document.getElementById('mobileRtlToggle');
+                function toggleRTL() { if (html.getAttribute('dir') === 'rtl') html.removeAttribute('dir'); else html.setAttribute('dir', 'rtl'); localStorage.setItem('direction', html.getAttribute('dir') || 'ltr'); }
+                if (rtlBtn) rtlBtn.addEventListener('click', toggleRTL);
+                if (mobileRtl) mobileRtl.addEventListener('click', toggleRTL);
+                if (localStorage.getItem('direction') === 'rtl') html.setAttribute('dir', 'rtl');
+                const menuBtn = document.getElementById('mobile-menu-button');
+                const mobileMenu = document.getElementById('mobile-menu');
+                const menuIcon = document.getElementById('menu-icon');
+                const closeIcon = document.getElementById('close-icon');
+                const body = document.body;
+                function closeMobileMenu() { if (mobileMenu && !mobileMenu.classList.contains('hidden')) { mobileMenu.classList.add('hidden'); if (menuIcon && closeIcon) { menuIcon.classList.remove('hidden'); closeIcon.classList.add('hidden'); } body.classList.remove('menu-open'); body.style.overflow = ''; } }
+                function openMobileMenu() { if (mobileMenu && mobileMenu.classList.contains('hidden')) { mobileMenu.classList.remove('hidden'); if (menuIcon && closeIcon) { menuIcon.classList.add('hidden'); closeIcon.classList.remove('hidden'); } body.classList.add('menu-open'); body.style.overflow = 'hidden'; } }
+                if (menuBtn && mobileMenu) { menuBtn.addEventListener('click', (e) => { e.stopPropagation(); mobileMenu.classList.contains('hidden') ? openMobileMenu() : closeMobileMenu(); }); document.querySelectorAll('#mobile-menu a, #mobile-menu button').forEach(link => { if (link.id !== 'mobile-home-dropdown-btn' && link.id !== 'mobile-dashboard-dropdown-btn') link.addEventListener('click', closeMobileMenu); }); window.addEventListener('resize', () => { if (window.innerWidth >= 1280 && !mobileMenu.classList.contains('hidden')) closeMobileMenu(); }); }
+                const homeBtn = document.getElementById('mobile-home-dropdown-btn');
+                const homeSub = document.getElementById('mobile-home-submenu');
+                const homeIcon = document.getElementById('mobile-home-icon');
+                if (homeBtn && homeSub) { homeBtn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); homeSub.classList.toggle('hidden'); if (homeIcon) homeIcon.classList.toggle('rotate'); }); }
+                const dashBtn = document.getElementById('mobile-dashboard-dropdown-btn');
+                const dashSub = document.getElementById('mobile-dashboard-submenu');
+                const dashIcon = document.getElementById('mobile-dashboard-icon');
+                if (dashBtn && dashSub) { dashBtn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); dashSub.classList.toggle('hidden'); if (dashIcon) dashIcon.classList.toggle('rotate'); }); }
+            })();
+    </script>
+</body>
+
+</html>

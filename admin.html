@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="#" type="image/png">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <title>Admin Dashboard | HaulSwift – Junk Removal & Hauling</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* --- HaulSwift Brand Palette --- */
+        :root,
+        html[data-theme='light'] {
+            --color-background: #FFFFFF;
+            --color-primary-text: #1B5E20;
+            --color-secondary-text: #5C4033;
+            --color-accent: #F57C00;
+            --color-accent-light: #FFB300;
+            --color-border: #E5E7EB;
+            --color-hover: #FFF8E6;
+            --color-card-bg: #FFFFFF;
+            --color-sidebar-bg: #FDF9F2;
+            --color-success: #2B7A4B;
+            --color-warning: #F57C00;
+            --color-danger: #C84B31;
+        }
+
+        html[data-theme='dark'] {
+            --color-background: #000000;
+            --color-primary-text: #FFFFFF;
+            --color-secondary-text: #D7CCC8;
+            --color-accent: #F57C00;
+            --color-accent-light: #FFB300;
+            --color-border: #374151;
+            --color-hover: #2B1D16;
+            --color-card-bg: #111111;
+            --color-sidebar-bg: #0A0A0A;
+            --color-success: #3B9E6D;
+            --color-warning: #F57C00;
+            --color-danger: #E05A3A;
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-primary-text);
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: 600 !important;
+        }
+
+        p,
+        .text-secondary-text {
+            font-weight: 400 !important;
+        }
+
+        .text-accent {
+            color: var(--color-accent);
+        }
+
+        .text-accent-light {
+            color: var(--color-accent-light);
+        }
+
+        .bg-background {
+            background-color: var(--color-background);
+        }
+
+        .bg-hover {
+            background-color: var(--color-hover);
+        }
+
+        .border-border {
+            border-color: var(--color-border);
+        }
+
+        .card-bg {
+            background-color: var(--color-card-bg);
+        }
+
+        .bg-sidebar {
+            background-color: var(--color-sidebar-bg);
+        }
+
+        .dashboard-card {
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px -8px rgba(245, 124, 0, 0.08);
+        }
+
+        .dashboard-card:hover {
+            border-color: var(--color-accent);
+            box-shadow: 0 12px 28px -12px rgba(245, 124, 0, 0.2);
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1rem;
+            border-radius: 1rem;
+            color: var(--color-secondary-text);
+            transition: all 0.2s ease;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            cursor: pointer;
+        }
+
+        .sidebar-link:hover,
+        .sidebar-link.active {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        .sidebar-link:hover svg,
+        .sidebar-link.active svg {
+            stroke: white;
+            color: white;
+        }
+
+        .badge-success {
+            background: rgba(245, 124, 0, 0.12);
+            color: #2B7A4B;
+            font-weight: 600;
+        }
+
+        .badge-warning {
+            background: rgba(245, 124, 0, 0.15);
+            color: #F57C00;
+            font-weight: 600;
+        }
+
+        .badge-danger {
+            background: rgba(200, 75, 49, 0.12);
+            color: #C84B31;
+            font-weight: 600;
+        }
+
+        html[data-theme='dark'] .badge-success {
+            color: #6FBF4C;
+            background: rgba(111, 191, 76, 0.15);
+        }
+
+        html[data-theme='dark'] .badge-warning {
+            color: #F57C00;
+        }
+
+        html[data-theme='dark'] .badge-danger {
+            color: #E6775E;
+        }
+
+        .bg-haul-gradient {
+            background: var(--color-accent);
+        }
+
+        .btn-accent {
+            background: var(--color-accent);
+            color: white;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn-accent:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(245, 124, 0, 0.3);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--color-accent);
+            background: transparent;
+            color: var(--color-accent);
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        #mobile-overlay {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            position: fixed;
+            inset: 0;
+            z-index: 55;
+        }
+
+        #mobile-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        html[dir="rtl"] .sidebar-link {
+            flex-direction: row-reverse;
+        }
+
+        html[dir="rtl"] .ml-auto {
+            margin-right: auto;
+            margin-left: 0;
+        }
+
+        .status-delivered {
+            background: rgba(43, 122, 75, 0.15);
+            color: #2B7A4B;
+        }
+
+        .status-transit {
+            background: rgba(245, 124, 0, 0.15);
+            color: #F57C00;
+        }
+    </style>
+</head>
+
+<body class="antialiased bg-background">
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="fixed top-0 inset-x-0 z-50 bg-background border-b border-border h-[73px]">
+        <div class="px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <button id="mobile-menu-toggle" class="lg:hidden p-2 rounded-xl hover:bg-hover transition">
+                    <svg class="w-6 h-6 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <a href="index.html" class="flex items-center gap-2">
+                    <i class="fas fa-dumpster text-2xl text-accent"></i>
+                    <span class="text-2xl font-bold tracking-tight">Haul<span
+                            class="text-accent">Swift</span></span>
+                </a>
+            </div>
+
+            <div class="flex items-center gap-3 sm:gap-4">
+                <div class="hidden sm:flex items-center gap-2 bg-hover px-4 py-2 rounded-xl">
+                    <span class="w-2 h-2 bg-emerald-600 rounded-full"></span>
+                    <span class="text-sm font-medium text-primary-text">Fleet Active</span>
+                </div>
+
+                <button id="lang-toggle" class="p-2 rounded-full hover:bg-hover transition">
+                    <svg class="w-5 h-5 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-width="2"
+                            d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    </svg>
+                </button>
+
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-hover transition">
+                    <svg class="w-5 h-5 light-icon text-primary-text" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <svg class="w-5 h-5 dark-icon hidden text-primary-text" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+
+                <div class="flex items-center gap-2 pl-3 border-l border-border">
+                    <div
+                        class="w-9 h-9 rounded-full bg-haul-gradient flex items-center justify-center text-white font-bold">
+                        AD</div>
+                    <div class="hidden sm:block">
+                        <p class="text-sm font-medium">Admin User</p>
+                        <p class="text-xs text-secondary-text">Operations Manager</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="mobile-overlay" class="lg:hidden"></div>
+
+    <div class="flex min-h-screen pt-[73px]">
+
+        <!-- SIDEBAR -->
+        <aside id="sidebar"
+            class="fixed top-0 lg:top-[73px] left-0 w-72 lg:w-64 h-full lg:h-[calc(100vh-73px)] z-[60] transform -translate-x-full lg:translate-x-0 transition-transform duration-300 bg-background border-r border-border overflow-y-auto shrink-0">
+            <div class="p-5">
+                <div class="flex lg:hidden justify-between items-center mb-6">
+                    <span class="font-bold text-accent">Admin Menu</span>
+                    <button id="close-sidebar" class="p-2 hover:bg-hover rounded-lg">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <nav class="flex flex-col gap-1">
+                    <p class="text-xs uppercase tracking-wider text-secondary-text font-bold px-3 mb-2">Fleet Management
+                    </p>
+
+                    <a href="#" data-section="overview" class="sidebar-link active">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 10h18M6 14h6m-6 4h12M5 4h14a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z" />
+                        </svg>
+                        <span>Dashboard / Stats</span>
+                    </a>
+
+                    <a href="#" data-section="users" class="sidebar-link">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                        <span>Customers</span>
+                    </a>
+
+                    <a href="#" data-section="shipments" class="sidebar-link">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5-5 5-5" />
+                        </svg>
+                        <span>Active Hauls</span>
+                        <span class="ml-auto bg-accent text-white text-xs px-2 py-0.5 rounded-full">8</span>
+                    </a>
+
+                    <a href="#" data-section="inventory" class="sidebar-link">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                        </svg>
+                        <span>Truck Inventory</span>
+                    </a>
+
+                    <a href="#" data-section="orders" class="sidebar-link">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                        </svg>
+                        <span>Order History</span>
+                    </a>
+
+                    <a href="#" data-section="tours" class="sidebar-link">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                        </svg>
+                        <span>Schedule Pickup</span>
+                        <span class="ml-auto bg-accent-light/20 text-accent text-xs px-2 rounded-full">New</span>
+                    </a>
+
+                    <a href="#" data-section="settings" class="sidebar-link">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <span>System Config</span>
+                    </a>
+
+                    <a href="#" id="logoutBtn"
+                        class="sidebar-link mt-4 border-t border-border pt-3 text-red-600 hover:text-white hover:bg-red-600 !py-2 !px-3 gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1" />
+                        </svg>
+                        <span class="font-medium">Logout</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="flex-1 min-w-0 space-y-6 lg:ml-64 px-4 sm:px-6 lg:px-8 py-6">
+
+            <!-- OVERVIEW / STATISTICS SECTION -->
+            <div id="overview" class="admin-section">
+                <div class="mb-8">
+                    <h1 class="text-3xl font-serif font-bold text-primary-text">Welcome back, Admin!</h1>
+                    <p class="text-secondary-text mt-1">Fleet status is normal. 8 active hauls in progress today.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="dashboard-card p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-secondary-text text-sm">Total Customers</p>
+                                <p class="text-3xl font-black mt-1">1,284</p>
+                                <p class="text-xs text-emerald-600 mt-2">↑ 12% from last month</p>
+                            </div>
+                            <div
+                                class="w-12 h-12 bg-accent/10 rounded-2xl flex items-center justify-center text-accent">
+                                <i class="fa-solid fa-users text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-card p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-secondary-text text-sm">Completed Hauls</p>
+                                <p class="text-3xl font-black mt-1">1,052</p>
+                                <p class="text-xs text-emerald-600 mt-2">98% satisfaction rate</p>
+                            </div>
+                            <div
+                                class="w-12 h-12 bg-accent/10 rounded-2xl flex items-center justify-center text-accent">
+                                <i class="fa-solid fa-truck-fast text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-card p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-secondary-text text-sm">Tons Recycled</p>
+                                <p class="text-3xl font-black mt-1">43.2</p>
+                                <p class="text-xs text-emerald-600 mt-2">+8.5 tons this month</p>
+                            </div>
+                            <div
+                                class="w-12 h-12 bg-accent/10 rounded-2xl flex items-center justify-center text-accent">
+                                <i class="fa-solid fa-recycle text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-card p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-secondary-text text-sm">Active Drivers</p>
+                                <p class="text-3xl font-black mt-1">12</p>
+                                <p class="text-xs text-amber-600 mt-2">8 on route today</p>
+                            </div>
+                            <div
+                                class="w-12 h-12 bg-accent/10 rounded-2xl flex items-center justify-center text-accent">
+                                <i class="fa-solid fa-truck text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+                    <div class="dashboard-card p-6">
+                        <h3 class="font-bold text-lg mb-4">Monthly Hauls Volume</h3>
+                        <canvas id="shipmentChart" height="200"></canvas>
+                    </div>
+                    <div class="dashboard-card p-6">
+                        <h3 class="font-bold text-lg mb-4">Service Type Distribution</h3>
+                        <canvas id="pairingChart" height="200"></canvas>
+                    </div>
+                </div>
+
+                <!-- Recent Customer Activity -->
+                <div class="dashboard-card p-6 mt-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-bold text-lg">Recent Customer Activity</h3>
+                        <button class="text-accent text-sm font-bold hover:underline">View All</button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full min-w-[600px] text-sm text-left whitespace-nowrap">
+                            <thead class="border-b border-border text-secondary-text text-xs uppercase tracking-wider">
+                                <tr>
+                                    <th class="pb-3">Customer Name</th>
+                                    <th class="pb-3">Membership</th>
+                                    <th class="pb-3">Last Haul</th>
+                                    <th class="pb-3">Total Hauls</th>
+                                    <th class="pb-3">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-border">
+                                <tr>
+                                    <td class="py-4 font-bold">John Davis</td>
+                                    <td class="py-4"><span
+                                            class="bg-accent/10 text-accent px-3 py-1 rounded-full text-xs font-bold">Premium
+                                            Plus</span></td>
+                                    <td class="py-4 text-secondary-text">May 15, 2026</td>
+                                    <td class="py-4">12</td>
+                                    <td class="py-4"><span
+                                            class="status-delivered px-3 py-1 rounded-full text-xs font-bold">Active</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 font-bold">Sarah Chen</td>
+                                    <td class="py-4"><span
+                                            class="bg-accent/10 text-accent px-3 py-1 rounded-full text-xs font-bold">Business</span>
+                                    </td>
+                                    <td class="py-4 text-secondary-text">May 10, 2026</td>
+                                    <td class="py-4">24</td>
+                                    <td class="py-4"><span
+                                            class="status-delivered px-3 py-1 rounded-full text-xs font-bold">Active</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 font-bold">Mike Reynolds</td>
+                                    <td class="py-4"><span
+                                            class="bg-accent/10 text-accent px-3 py-1 rounded-full text-xs font-bold">Standard</span>
+                                    </td>
+                                    <td class="py-4 text-secondary-text">May 2, 2026</td>
+                                    <td class="py-4">3</td>
+                                    <td class="py-4"><span
+                                            class="badge-warning px-3 py-1 rounded-full text-xs font-bold">Pending</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CUSTOMERS SECTION -->
+            <div id="users" class="admin-section hidden">
+                <div class="dashboard-card p-6">
+                    <h2 class="text-2xl font-serif font-bold mb-6"><span class="text-accent">◉</span> Customer Directory
+                    </h2>
+                    <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                        <div class="flex-1 relative"><input type="text"
+                                placeholder="Search by name, email, or membership..."
+                                class="w-full px-4 py-3 bg-hover border border-border rounded-xl"><i
+                                class="fa-solid fa-magnifying-glass absolute right-3 top-4 text-secondary-text"></i>
+                        </div>
+                        <select class="px-4 py-3 bg-hover border border-border rounded-xl">
+                            <option>All Memberships</option>
+                            <option>Premium Plus</option>
+                            <option>Business</option>
+                            <option>Standard</option>
+                        </select>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full min-w-[600px] text-sm text-left whitespace-nowrap">
+                            <thead class="border-b border-border text-secondary-text text-xs uppercase tracking-wider">
+                                <tr>
+                                    <th class="pb-3">Customer Name</th>
+                                    <th class="pb-3">Email</th>
+                                    <th class="pb-3">Membership</th>
+                                    <th class="pb-3">Join Date</th>
+                                    <th class="pb-3">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-border">
+                                <tr>
+                                    <td class="py-4 font-bold">John Davis</td>
+                                    <td class="py-4 text-secondary-text">john.davis@email.com</td>
+                                    <td class="py-4"><span
+                                            class="bg-accent/10 text-accent px-3 py-1 rounded-full text-xs font-bold">Premium
+                                            Plus</span></td>
+                                    <td class="py-4 text-secondary-text">Jan 2025</td>
+                                    <td class="py-4"><button
+                                            class="text-accent hover:underline font-bold">Manage</button></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 font-bold">Sarah Chen</td>
+                                    <td class="py-4 text-secondary-text">sarah.chen@business.com</td>
+                                    <td class="py-4"><span
+                                            class="bg-accent/10 text-accent px-3 py-1 rounded-full text-xs font-bold">Business</span>
+                                    </td>
+                                    <td class="py-4 text-secondary-text">Mar 2026</td>
+                                    <td class="py-4"><button
+                                            class="text-accent hover:underline font-bold">Manage</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACTIVE HAULS MANAGEMENT -->
+            <div id="shipments" class="admin-section hidden">
+                <div class="dashboard-card p-6">
+                    <h2 class="text-2xl font-serif font-bold mb-4"><span class="text-accent">📦</span> Active Hauls
+                        Tracker</h2>
+                    <p class="mb-4 text-secondary-text">Manage active pickups, driver assignments, and haul statuses.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-4 border border-border rounded-xl">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3"><span class="font-bold">John Davis - Furniture
+                                    Removal</span><span
+                                    class="status-transit px-2 py-0.5 text-xs rounded-full font-bold whitespace-nowrap">In Transit</span>
+                            </div>
+                            <div class="text-sm text-secondary-text mt-1">Driver: Mike R. · ETA 4:30 PM</div>
+                        </div>
+                        <div class="p-4 border border-border rounded-xl">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3"><span class="font-bold">Sarah Chen - Office
+                                    Cleanout</span><span
+                                    class="badge-warning px-2 py-0.5 text-xs rounded-full font-bold whitespace-nowrap">Scheduled</span>
+                            </div>
+                            <div class="text-sm text-secondary-text mt-1">Tomorrow, 9:00 AM · 2 trucks needed</div>
+                        </div>
+                    </div>
+                    <button class="btn-accent mt-6 px-5 py-2 rounded-xl">Dispatch New Haul</button>
+                </div>
+            </div>
+
+            <!-- TRUCK INVENTORY -->
+            <div id="inventory" class="admin-section hidden">
+                <div class="dashboard-card p-6">
+                    <h2 class="text-2xl font-serif font-bold mb-2"><span class="text-accent">🚛</span> Fleet Inventory
+                    </h2>
+                    <p class="text-secondary-text mb-6">Manage your fleet of trucks and equipment.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="border border-border rounded-2xl overflow-hidden bg-hover">
+                            <div class="bg-accent/10 p-4 text-center"><i
+                                    class="fa-solid fa-truck text-4xl text-accent"></i></div>
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg">Truck #422</h3>
+                                <p class="text-xs text-secondary-text">Capacity: 2 tons · Status: On Route</p>
+                                <div class="flex justify-between items-center mt-4"><span
+                                        class="font-bold text-accent">Driver: Mike R.</span><button
+                                        class="text-xs bg-accent text-white px-3 py-1 rounded-full">Track</button></div>
+                            </div>
+                        </div>
+                        <div class="border border-border rounded-2xl overflow-hidden bg-hover">
+                            <div class="bg-accent/10 p-4 text-center"><i
+                                    class="fa-solid fa-truck text-4xl text-accent"></i></div>
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg">Truck #189</h3>
+                                <p class="text-xs text-secondary-text">Capacity: 3 tons · Status: Available</p>
+                                <div class="flex justify-between items-center mt-4"><span
+                                        class="font-bold text-accent">Driver: David L.</span><button
+                                        class="text-xs bg-accent text-white px-3 py-1 rounded-full">Assign</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="border border-border rounded-2xl overflow-hidden bg-hover flex items-center justify-center min-h-[200px] border-dashed hover:border-accent transition cursor-pointer">
+                            <div class="text-center"><i class="fa-solid fa-plus text-2xl text-secondary-text mb-2"></i>
+                                <p class="font-bold">Add Truck</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ORDER HISTORY -->
+            <div id="orders" class="admin-section hidden">
+                <div class="dashboard-card p-6">
+                    <h2 class="text-2xl font-serif font-bold mb-2"><span class="text-accent">🧾</span> Order Ledger</h2>
+                    <p class="text-secondary-text mb-6">Track customer orders, invoices, and payment status.</p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full min-w-[600px] text-sm text-left whitespace-nowrap">
+                            <thead class="border-b border-border">
+                                <tr>
+                                    <th class="pb-3">Order ID</th>
+                                    <th class="pb-3">Customer</th>
+                                    <th class="pb-3">Date</th>
+                                    <th class="pb-3">Amount</th>
+                                    <th class="pb-3">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-border">
+                                <tr>
+                                    <td class="py-4 font-mono font-bold text-accent">#HS-9021</td>
+                                    <td class="py-4 font-bold">John Davis</td>
+                                    <td class="py-4">Today</td>
+                                    <td class="py-4 font-bold">$249</td>
+                                    <td class="py-4"><span
+                                            class="status-delivered px-3 py-1 rounded-full text-xs font-bold">Paid</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 font-mono font-bold text-accent">#HS-9020</td>
+                                    <td class="py-4 font-bold">Sarah Chen</td>
+                                    <td class="py-4">Yesterday</td>
+                                    <td class="py-4 font-bold">$499</td>
+                                    <td class="py-4"><span
+                                            class="badge-warning px-3 py-1 rounded-full text-xs font-bold">Pending</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCHEDULE PICKUP -->
+            <div id="tours" class="admin-section hidden">
+                <div class="dashboard-card p-6">
+                    <h2 class="text-2xl font-serif font-bold"><span class="text-accent">📅</span> Schedule Pickup</h2>
+                    <div class="grid md:grid-cols-2 gap-6 mt-5">
+                        <div>
+                            <h3 class="font-bold mb-2">Upcoming Pickups</h3>
+                            <ul class="space-y-2">
+                                <li>Today, 2:00 PM - John Davis (Furniture)</li>
+                                <li>Tomorrow, 9:00 AM - Sarah Chen (Office)</li>
+                                <li>May 28, 11:00 AM - Mike Reynolds (Garage)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-bold mb-2">Quick Schedule</h3><input type="date"
+                                class="w-full p-2 border border-border rounded-xl bg-hover" /><button
+                                class="btn-accent w-full mt-4 py-2 rounded-xl">Add Pickup</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SYSTEM CONFIGURATION -->
+            <div id="settings" class="admin-section hidden">
+                <div class="dashboard-card p-6 rounded-2xl">
+                    <h2 class="text-2xl font-serif font-bold"><span class="text-accent">⚙️</span> System Configuration</h2>
+                    <div class="space-y-5 mt-5">
+                        <div><label class="block font-bold mb-1">Service Area Coverage</label><select
+                                class="p-2 border border-border rounded-xl w-full bg-hover text-primary-text">
+                                <option>Los Angeles County</option>
+                                <option>Orange County</option>
+                                <option>San Bernardino</option>
+                                <option>Riverside</option>
+                            </select></div>
+                        <div><label class="block font-bold mb-1">Rate Sheet (PDF)</label><input type="file"
+                                class="text-sm" /></div>
+                        <div class="flex items-center justify-between pt-3"><span class="font-bold">Auto-assign
+                                drivers</span><label class="relative inline-flex items-center cursor-pointer"><input
+                                    type="checkbox" class="sr-only peer" checked>
+                                <div
+                                    class="w-11 h-6 bg-border rounded-full peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent">
+                                </div>
+                            </label></div>
+                        <button class="btn-accent w-full py-3 rounded-xl mt-3">Save Settings</button>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="text-center text-xs text-secondary-text border-t border-border pt-8 pb-4">
+                <p>© 2026 HaulSwift — Professional Junk Removal & Hauling Service</p>
+                <div class="flex justify-center gap-6 mt-4"><a href="#" class="hover:text-accent">Service Logs</a><a
+                        href="#" class="hover:text-accent">Customer Analytics</a><a href="#"
+                        class="hover:text-accent">Fleet Reports</a></div>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        (function () {
+            const html = document.documentElement;
+            function setTheme(theme) { html.setAttribute('data-theme', theme); localStorage.setItem('theme', theme); document.querySelectorAll('.light-icon').forEach(i => i.classList.toggle('hidden', theme === 'dark')); document.querySelectorAll('.dark-icon').forEach(i => i.classList.toggle('hidden', theme === 'light')); }
+            setTheme(localStorage.getItem('theme') || 'light');
+            document.getElementById('theme-toggle')?.addEventListener('click', () => setTheme(html.getAttribute('data-theme') === 'light' ? 'dark' : 'light'));
+
+            function setDirection(dir) { html.setAttribute('dir', dir); localStorage.setItem('language', dir === 'rtl' ? 'ar' : 'en'); }
+            setDirection(localStorage.getItem('language') === 'ar' ? 'rtl' : 'ltr');
+            document.getElementById('lang-toggle')?.addEventListener('click', () => setDirection(html.getAttribute('dir') === 'ltr' ? 'rtl' : 'ltr'));
+
+            const menuToggle = document.getElementById('mobile-menu-toggle'), closeSidebar = document.getElementById('close-sidebar'), sidebar = document.getElementById('sidebar'), overlay = document.getElementById('mobile-overlay');
+            function toggleMobile(open) { sidebar.classList.toggle('-translate-x-full', !open); overlay.classList.toggle('active', open); document.body.style.overflow = open ? 'hidden' : ''; }
+            menuToggle?.addEventListener('click', () => toggleMobile(true)); closeSidebar?.addEventListener('click', () => toggleMobile(false)); overlay?.addEventListener('click', () => toggleMobile(false));
+
+            const sections = ['overview', 'users', 'shipments', 'inventory', 'orders', 'tours', 'settings'];
+            const links = document.querySelectorAll('.sidebar-link');
+            window.activateSection = function (sectionId) { sections.forEach(id => document.getElementById(id)?.classList.add('hidden')); document.getElementById(sectionId)?.classList.remove('hidden'); links.forEach(link => { link.classList.remove('active'); if (link.dataset.section === sectionId) link.classList.add('active'); }); if (window.innerWidth < 1024) toggleMobile(false); };
+            links.forEach(link => { if (link.dataset.section) link.addEventListener('click', (e) => { e.preventDefault(); activateSection(link.dataset.section); }); });
+
+            setTimeout(() => {
+                const shipCtx = document.getElementById('shipmentChart')?.getContext('2d');
+                if (shipCtx) new Chart(shipCtx, { type: 'bar', data: { labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'], datasets: [{ label: 'Hauls Completed', data: [180, 220, 310, 290, 350], backgroundColor: '#F57C00', borderRadius: 8 }] }, options: { responsive: true } });
+                const pairCtx = document.getElementById('pairingChart')?.getContext('2d');
+                if (pairCtx) new Chart(pairCtx, { type: 'doughnut', data: { labels: ['Residential', 'Commercial', 'Construction', 'Yard Waste'], datasets: [{ data: [45, 28, 18, 9], backgroundColor: ['#F57C00', '#1B5E20', '#FFB300', '#5C4033'] }] }, options: { plugins: { legend: { position: 'bottom' } } } });
+            }, 100);
+            document.getElementById("logoutBtn")?.addEventListener("click", function (e) { e.preventDefault(); localStorage.clear(); sessionStorage.clear(); window.location.href = "index.html"; });
+        })();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="#" type="image/png">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Customer Dashboard | HaulSwift – Junk Removal & Hauling</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* --- Premium Hauling Brand Palette --- */
+        :root,
+        html[data-theme='light'] {
+            --color-background: #FFFFFF;
+            --color-primary-text: #1B5E20;
+            --color-secondary-text: #5C4033;
+            --color-accent: #F57C00;
+            --color-accent-light: #FFB300;
+            --color-border: #E5E7EB;
+            --color-hover: #FFF8E6;
+            --color-card-bg: #FFFFFF;
+            --color-sidebar-bg: #FDF9F2;
+            --color-success: #2B7A4B;
+            --color-warning: #F57C00;
+        }
+
+        html[data-theme='dark'] {
+            --color-background: #000000;
+            --color-primary-text: #FFFFFF;
+            --color-secondary-text: #D7CCC8;
+            --color-accent: #F57C00;
+            --color-accent-light: #FFB300;
+            --color-border: #374151;
+            --color-hover: #2B1D16;
+            --color-card-bg: #111111;
+            --color-sidebar-bg: #0A0A0A;
+            --color-success: #3B9E6D;
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-primary-text);
+            font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: 600 !important;
+        }
+
+        p,
+        .text-secondary-text {
+            font-weight: 400 !important;
+        }
+
+        .text-accent {
+            color: var(--color-accent);
+        }
+
+        .bg-background {
+            background-color: var(--color-background);
+        }
+
+        .bg-hover {
+            background-color: var(--color-hover);
+        }
+
+        .border-border {
+            border-color: var(--color-border);
+        }
+
+        .dashboard-card {
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px -8px rgba(245, 124, 0, 0.08);
+        }
+
+        .dashboard-card:hover {
+            border-color: var(--color-accent);
+            box-shadow: 0 12px 28px -12px rgba(245, 124, 0, 0.2);
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1rem;
+            border-radius: 1rem;
+            color: var(--color-secondary-text);
+            transition: all 0.2s ease;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            cursor: pointer;
+        }
+
+        .sidebar-link:hover,
+        .sidebar-link.active {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        .badge-active {
+            background: rgba(245, 124, 0, 0.15);
+            color: #F57C00;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+        }
+
+        .btn-primary {
+            background: var(--color-accent);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(245, 124, 0, 0.3);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--color-accent);
+            background: transparent;
+            color: var(--color-accent);
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        #mobile-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 55;
+        }
+
+        #mobile-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .progress-bar {
+            background: #F57C00;
+            height: 6px;
+            border-radius: 10px;
+        }
+
+        .status-badge {
+            background: rgba(245, 124, 0, 0.15);
+            color: #F57C00;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .status-delivered {
+            background: rgba(43, 122, 75, 0.15);
+            color: #2B7A4B;
+        }
+
+        .status-transit {
+            background: rgba(245, 124, 0, 0.15);
+            color: #F57C00;
+        }
+    </style>
+</head>
+
+<body class="antialiased bg-background">
+
+    <!-- TOP HEADER -->
+    <header class="fixed top-0 inset-x-0 z-50 bg-background border-b border-border h-[73px]">
+        <div class="px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <button id="mobile-menu-toggle" class="lg:hidden p-2 rounded-xl hover:bg-hover transition">
+                    <svg class="w-6 h-6 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <a href="index.html" class="flex items-center gap-2">
+                    <i class="fas fa-dumpster text-2xl text-accent"></i>
+                    <span class="text-2xl font-bold tracking-tight">Haul<span
+                            class="text-accent">Swift</span></span>
+                </a>
+            </div>
+            <div class="flex items-center gap-3 sm:gap-4">
+                <button id="lang-toggle" class="p-2 rounded-full hover:bg-hover transition">
+                    <svg class="w-5 h-5 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-width="2"
+                            d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    </svg>
+                </button>
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-hover transition">
+                    <svg class="w-5 h-5 light-icon text-primary-text" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-width="2"
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <svg class="w-5 h-5 dark-icon hidden text-primary-text" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-width="2"
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+                <div class="flex items-center gap-2 pl-3 border-l border-border">
+                    <div class="w-9 h-9 rounded-full bg-accent flex items-center justify-center text-white font-bold">
+                        JD
+                    </div>
+                    <div class="hidden sm:block">
+                        <p class="text-sm font-medium">John Davis</p>
+                        <p class="text-xs text-secondary-text">Premium Member</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="mobile-overlay" class="lg:hidden"></div>
+
+    <div class="flex min-h-screen pt-[73px]">
+
+        <!-- CUSTOMER SIDEBAR -->
+        <aside id="sidebar"
+            class="fixed top-0 lg:top-[73px] left-0 w-72 lg:w-64 h-full lg:h-[calc(100vh-73px)] z-[60] transform -translate-x-full lg:translate-x-0 transition-transform duration-300 bg-background border-r border-border overflow-y-auto shrink-0">
+            <div class="p-5">
+                <div class="flex lg:hidden justify-between items-center mb-6">
+                    <span class="font-bold text-accent">Customer Menu</span>
+                    <button id="close-sidebar" class="p-2 hover:bg-hover rounded-lg">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <nav class="flex flex-col gap-1">
+                    <p class="text-xs uppercase tracking-wider text-secondary-text px-3 mb-2">My Account</p>
+                    <a href="#" data-section="overview" class="sidebar-link active"><i
+                            class="fa-solid fa-house-chimney w-5"></i><span>Dashboard</span></a>
+                    <a href="#" data-section="shipments" class="sidebar-link"><i
+                            class="fa-solid fa-truck-fast w-5"></i><span>My Hauls</span></a>
+                    <a href="#" data-section="orders" class="sidebar-link"><i
+                            class="fa-solid fa-receipt w-5"></i><span>Order History</span></a>
+                    <a href="#" data-section="saved" class="sidebar-link"><i
+                            class="fa-solid fa-bookmark w-5"></i><span>Saved Quotes</span></a>
+                    <a href="#" data-section="tours" class="sidebar-link"><i
+                            class="fa-solid fa-calendar-check w-5"></i><span>Schedule Pickup</span></a>
+                    <a href="#" data-section="subscription" class="sidebar-link"><i
+                            class="fa-solid fa-crown w-5"></i><span>Membership</span></a>
+                    <a href="#" id="logoutBtn"
+                        class="sidebar-link mt-6 border-t border-border pt-4 text-red-600 hover:text-white hover:bg-red-600"><i
+                            class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- MAIN PANEL -->
+        <main class="flex-1 min-w-0 space-y-6 lg:ml-64 px-4 sm:px-6 lg:px-8 py-6">
+
+            <!-- DASHBOARD OVERVIEW -->
+            <div id="overview" class="admin-section">
+                <div class="mb-8">
+                    <h1 class="text-3xl font-serif font-bold text-primary-text">Welcome back, John Davis!</h1>
+                    <p class="text-secondary-text mt-1">Track your hauls, manage pickups, and view your service history.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="dashboard-card p-6">
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="text-secondary-text text-sm">Membership Status</p>
+                                <p class="text-2xl font-black mt-1">Premium Plus</p>
+                                <p class="text-xs text-success mt-2">✓ Priority scheduling</p>
+                            </div>
+                            <div
+                                class="w-12 h-12 bg-accent/10 rounded-2xl flex items-center justify-center text-accent">
+                                <i class="fa-solid fa-crown text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-card p-6">
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="text-secondary-text text-sm">Next Scheduled Haul</p>
+                                <p class="text-2xl font-black mt-1">May 28, 2026</p>
+                                <p class="text-xs text-accent mt-2">2:00 PM - 4:00 PM</p>
+                            </div>
+                            <div
+                                class="w-12 h-12 bg-accent/10 rounded-2xl flex items-center justify-center text-accent">
+                                <i class="fa-solid fa-calendar-check text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-card p-6">
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="text-secondary-text text-sm">Total Hauls Completed</p>
+                                <p class="text-2xl font-black mt-1">24</p>
+                                <p class="text-xs text-accent mt-2">12.5 tons recycled</p>
+                            </div>
+                            <div
+                                class="w-12 h-12 bg-accent/10 rounded-2xl flex items-center justify-center text-accent">
+                                <i class="fa-solid fa-recycle text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current Haul Progress -->
+                <div class="dashboard-card p-6 mt-6">
+                    <h3 class="font-bold text-lg mb-2">🚛 Current Haul: "Furniture & Appliance Removal"</h3>
+                    <div class="flex justify-between text-sm mb-2"><span>Loading & Transport</span><span>75%</span>
+                    </div>
+                    <div class="w-full bg-border rounded-full h-2">
+                        <div class="progress-bar rounded-full w-[75%] h-2"></div>
+                    </div>
+                    <p class="text-secondary-text text-sm mt-4">Items: 1 sectional sofa, 2 mattresses, refrigerator, 4
+                        boxes. Estimated completion: 4:30 PM today.</p>
+                    <button class="btn-outline px-5 py-2 rounded-xl text-sm mt-4 font-semibold">Track Live Location <i
+                            class="fa-solid fa-location-dot ml-1"></i></button>
+                </div>
+
+                <!-- Recent Quotes Activity -->
+                <div class="dashboard-card p-6 mt-6">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-bold text-lg">📋 Recent Service Quotes</h3>
+                        <a href="#" data-section="saved" class="text-accent text-sm hover:underline">View all</a>
+                    </div>
+                    <div class="space-y-3 mt-4">
+                        <div
+                            class="p-3 bg-hover rounded-xl flex items-center justify-between border border-transparent hover:border-border transition">
+                            <div>
+                                <p class="font-semibold">Garage Cleanout - 2 car garage</p>
+                                <p class="text-sm text-secondary-text mt-1">Furniture, old tools, boxes, shelves</p>
+                            </div>
+                            <span class="font-bold text-accent bg-accent/10 px-3 py-1 rounded-full text-xs">$249</span>
+                        </div>
+                        <div
+                            class="p-3 bg-hover rounded-xl flex items-center justify-between border border-transparent hover:border-border transition">
+                            <div>
+                                <p class="font-semibold">Yard Waste Removal - 1/4 acre</p>
+                                <p class="text-sm text-secondary-text mt-1">Branches, leaves, grass clippings</p>
+                            </div>
+                            <span class="font-bold text-accent bg-accent/10 px-3 py-1 rounded-full text-xs">$159</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MY HAULS / SHIPMENTS TRACKING -->
+            <div id="shipments" class="admin-section hidden">
+                <div class="dashboard-card p-6">
+                    <h2 class="text-2xl font-serif font-bold mb-6">📦 Active & Past Hauls</h2>
+                    <div class="space-y-5">
+                        <div class="border border-border rounded-xl p-5 bg-hover">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-border pb-3 mb-3">
+                                <span class="font-bold text-lg">May 2026 - Furniture Removal</span>
+                                <span class="status-badge status-transit">In Transit · Est. Today 4:30 PM</span>
+                            </div>
+                            <p class="text-sm text-secondary-text">Items: Sectional sofa, 2 mattresses, refrigerator, 4
+                                moving boxes. Driver: Mike R. - Truck #422</p>
+                            <button class="btn-accent px-4 py-2 rounded-xl text-sm mt-4 font-bold"><i
+                                    class="fa-solid fa-map-location-dot mr-2"></i>Live GPS Tracking</button>
+                        </div>
+                        <div class="border border-border rounded-xl p-5 bg-hover">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-border pb-3 mb-3">
+                                <span class="font-bold text-lg">April 2026 - Estate Cleanout</span>
+                                <span class="status-badge status-delivered">Delivered Apr 15</span>
+                            </div>
+                            <p class="text-sm text-secondary-text">Full 3-bedroom house cleanout. Donated usable
+                                furniture to local charities.</p>
+                            <a href="#" class="text-accent text-sm font-bold mt-4 inline-block hover:underline"><i
+                                    class="fa-solid fa-file-pdf mr-1"></i> Download Receipt</a>
+                        </div>
+                        <div class="border border-border rounded-xl p-5 bg-hover">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-border pb-3 mb-3">
+                                <span class="font-bold text-lg">March 2026 - Construction Debris</span>
+                                <span class="status-badge status-delivered">Delivered Mar 22</span>
+                            </div>
+                            <p class="text-sm text-secondary-text">Concrete, drywall, lumber from bathroom renovation. 2
+                                full truck loads.</p>
+                            <a href="#" class="text-accent text-sm font-bold mt-4 inline-block hover:underline"><i
+                                    class="fa-solid fa-file-pdf mr-1"></i> Download Receipt</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ORDER HISTORY -->
+            <div id="orders" class="admin-section hidden">
+                <div class="dashboard-card p-6">
+                    <h2 class="text-2xl font-serif font-bold">🧾 Order History</h2>
+                    <p class="mb-4 text-secondary-text">View your past service invoices and transaction details.</p>
+                    <div class="space-y-3 mt-4">
+                        <div class="border border-border rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                            <div>
+                                <p class="font-semibold">May 15, 2026 - Furniture Removal</p>
+                                <p class="text-xs text-secondary-text">Order #HS-2026-0422</p>
+                            </div>
+                            <div><span class="font-bold text-accent">$249</span><button
+                                    class="ml-4 text-accent text-sm hover:underline">View</button></div>
+                        </div>
+                        <div class="border border-border rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                            <div>
+                                <p class="font-semibold">April 10, 2026 - Estate Cleanout</p>
+                                <p class="text-xs text-secondary-text">Order #HS-2026-0389</p>
+                            </div>
+                            <div><span class="font-bold text-accent">$499</span><button
+                                    class="ml-4 text-accent text-sm hover:underline">View</button></div>
+                        </div>
+                        <div class="border border-border rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                            <div>
+                                <p class="font-semibold">March 5, 2026 - Construction Debris</p>
+                                <p class="text-xs text-secondary-text">Order #HS-2026-0215</p>
+                            </div>
+                            <div><span class="font-bold text-accent">$349</span><button
+                                    class="ml-4 text-accent text-sm hover:underline">View</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SAVED QUOTES -->
+            <div id="saved" class="admin-section hidden">
+                <div class="dashboard-card p-6">
+                    <h2 class="text-2xl font-serif font-bold">💾 Saved Quotes</h2>
+                    <p class="mb-4 text-secondary-text">Your saved service estimates — ready to book anytime.</p>
+                    <div class="space-y-3 mt-4">
+                        <div class="border border-border rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                            <div>
+                                <p class="font-semibold">Garage Cleanout</p>
+                                <p class="text-xs text-secondary-text">Quote expires: Jun 30, 2026</p>
+                            </div>
+                            <div><span class="font-bold text-accent">$249</span><button
+                                    class="ml-4 bg-accent text-white px-4 py-1 rounded-full text-xs font-bold">Book
+                                    Now</button></div>
+                        </div>
+                        <div class="border border-border rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                            <div>
+                                <p class="font-semibold">Yard Waste Removal</p>
+                                <p class="text-xs text-secondary-text">Quote expires: Jun 30, 2026</p>
+                            </div>
+                            <div><span class="font-bold text-accent">$159</span><button
+                                    class="ml-4 bg-accent text-white px-4 py-1 rounded-full text-xs font-bold">Book
+                                    Now</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCHEDULE PICKUP -->
+            <div id="tours" class="admin-section hidden">
+                <div class="dashboard-card p-6">
+                    <h2 class="text-2xl font-serif font-bold">📅 Schedule a Pickup</h2>
+                    <p class="mb-4 text-secondary-text">Book a residential or commercial junk removal appointment.</p>
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="flex-1 bg-hover border border-border rounded-xl p-5">
+                            <h3 class="font-bold text-lg">🏠 Residential Pickup</h3>
+                            <p class="text-sm mt-2 text-secondary-text">Furniture, appliances, yard waste, garage
+                                cleanouts.</p>
+                            <label class="block mt-4 text-sm font-bold">Preferred Date: <input type="date"
+                                    class="ml-2 p-1.5 border border-border rounded bg-background w-full mt-2"></label>
+                            <label class="block mt-3 text-sm font-bold">Time Window:
+                                <select class="ml-2 p-1.5 border border-border rounded bg-background w-full mt-2">
+                                    <option>8:00 AM - 12:00 PM</option>
+                                    <option>12:00 PM - 4:00 PM</option>
+                                    <option>4:00 PM - 7:00 PM</option>
+                                </select>
+                            </label>
+                            <button class="btn-primary w-full mt-4 py-2 rounded-xl text-sm font-bold">Schedule
+                                Residential Pickup</button>
+                        </div>
+                        <div class="flex-1 bg-hover border border-border rounded-xl p-5">
+                            <h3 class="font-bold text-lg">🏢 Commercial Pickup</h3>
+                            <p class="text-sm mt-2 text-secondary-text">Office furniture, warehouse waste, construction
+                                debris.</p>
+                            <label class="block mt-4 text-sm font-bold">Preferred Date: <input type="date"
+                                    class="ml-2 p-1.5 border border-border rounded bg-background w-full mt-2"></label>
+                            <label class="block mt-3 text-sm font-bold">Load Size:
+                                <select class="ml-2 p-1.5 border border-border rounded bg-background w-full mt-2">
+                                    <option>Small (1/4 truck)</option>
+                                    <option>Medium (1/2 truck)</option>
+                                    <option>Large (Full truck)</option>
+                                </select>
+                            </label>
+                            <button class="btn-primary w-full mt-4 py-2 rounded-xl text-sm font-bold">Request Commercial
+                                Quote</button>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-center text-sm text-accent bg-accent/10 py-3 rounded-xl font-bold">
+                        *Premium members receive priority scheduling and 15% off all pickups
+                    </div>
+                </div>
+            </div>
+
+            <!-- MEMBERSHIP -->
+            <div id="subscription" class="admin-section hidden">
+                <div class="dashboard-card p-6">
+                    <h2 class="text-2xl font-serif font-bold">⚙️ My Membership</h2>
+                    <div class="grid md:grid-cols-2 gap-6 mt-5">
+                        <div class="border border-border p-5 rounded-xl bg-hover">
+                            <h3 class="font-bold text-lg">Current Plan</h3>
+                            <p class="text-accent text-xl font-bold mt-1">Premium Plus</p>
+                            <p class="text-secondary-text text-sm mt-2">Includes priority scheduling, 15% discount, free
+                                estimates, and dedicated support.</p>
+                            <button class="btn-outline w-full mt-4 py-2 text-sm rounded-xl font-bold">Upgrade to
+                                Business</button>
+                        </div>
+                        <div class="border border-border p-5 rounded-xl bg-hover">
+                            <h3 class="font-bold text-lg">Service Address</h3>
+                            <p class="text-secondary-text text-sm mt-2">1234 Main Street, Suite 200<br />Los Angeles, CA
+                                90015</p>
+                            <button class="text-accent text-sm mt-2 font-bold hover:underline">Update address</button>
+
+                            <h3 class="font-bold mt-6 text-lg">Service Preferences</h3>
+                            <p class="text-secondary-text text-sm mt-2">Residential • Furniture & Appliance Removal</p>
+                            <button class="text-accent text-sm mt-2 font-bold hover:underline">Edit preferences</button>
+                        </div>
+                    </div>
+                    <div
+                        class="mt-6 p-5 border border-border bg-background rounded-xl flex flex-col sm:flex-row justify-between items-center gap-4">
+                        <div>
+                            <p class="font-bold text-lg">Next Billing Date: July 1, 2026</p>
+                            <p class="text-sm text-secondary-text mt-1">Premium Plus Annual Plan: $299/year</p>
+                        </div>
+                        <button class="btn-primary px-6 py-3 rounded-xl font-bold whitespace-nowrap">Manage
+                            Billing</button>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="text-center text-xs text-secondary-text border-t border-border pt-8 pb-4 mt-6">
+                <p>© 2026 HaulSwift — Professional Junk Removal & Hauling Service</p>
+                <div class="flex justify-center gap-6 mt-3">
+                    <a href="#" class="hover:text-accent font-bold">Refer a Friend</a>
+                    <a href="#" class="hover:text-accent font-bold">Service FAQs</a>
+                    <a href="#" class="hover:text-accent font-bold">Eco-Friendly Policy</a>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        (function () {
+            const html = document.documentElement;
+            function setTheme(theme) { html.setAttribute('data-theme', theme); localStorage.setItem('theme', theme); document.querySelectorAll('.light-icon').forEach(i => i.classList.toggle('hidden', theme === 'dark')); document.querySelectorAll('.dark-icon').forEach(i => i.classList.toggle('hidden', theme === 'light')); }
+            setTheme(localStorage.getItem('theme') || 'light');
+            document.getElementById('theme-toggle')?.addEventListener('click', () => setTheme(html.getAttribute('data-theme') === 'light' ? 'dark' : 'light'));
+            function setDirection(dir) { html.setAttribute('dir', dir); localStorage.setItem('language', dir === 'rtl' ? 'ar' : 'en'); }
+            setDirection(localStorage.getItem('language') === 'ar' ? 'rtl' : 'ltr');
+            document.getElementById('lang-toggle')?.addEventListener('click', () => setDirection(html.getAttribute('dir') === 'ltr' ? 'rtl' : 'ltr'));
+
+            const menuToggle = document.getElementById('mobile-menu-toggle'), closeSidebar = document.getElementById('close-sidebar'), sidebar = document.getElementById('sidebar'), overlay = document.getElementById('mobile-overlay');
+            function toggleMobile(open) { sidebar.classList.toggle('-translate-x-full', !open); overlay.classList.toggle('active', open); document.body.style.overflow = open ? 'hidden' : ''; }
+            menuToggle?.addEventListener('click', () => toggleMobile(true)); closeSidebar?.addEventListener('click', () => toggleMobile(false)); overlay?.addEventListener('click', () => toggleMobile(false));
+
+            const sections = ['overview', 'shipments', 'orders', 'saved', 'tours', 'subscription'];
+            const links = document.querySelectorAll('.sidebar-link');
+            window.activateSection = function (sectionId) { sections.forEach(id => document.getElementById(id)?.classList.add('hidden')); document.getElementById(sectionId)?.classList.remove('hidden'); links.forEach(link => { link.classList.remove('active'); if (link.dataset.section === sectionId) link.classList.add('active'); }); if (window.innerWidth < 1024) toggleMobile(false); };
+            links.forEach(link => { if (link.dataset.section) link.addEventListener('click', (e) => { e.preventDefault(); activateSection(link.dataset.section); }); });
+            document.getElementById("logoutBtn")?.addEventListener("click", function (e) { e.preventDefault(); localStorage.clear(); sessionStorage.clear(); window.location.href = "index.html"; });
+        })();
+    </script>
+</body>
+
+</html>

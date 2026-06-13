@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Login | HaulSwift – Professional Junk Removal & Hauling</title>
+    <link rel="icon" href="#" type="image/png">
+    <meta name="description"
+        content="Log in to your HaulSwift account — manage your service requests, track active hauls, view invoices, and update your preferences.">
+
+    <!-- Tailwind CSS + Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'haul-primary': '#1B5E20',
+                        'haul-secondary': '#F57C00',
+                        'haul-accent': '#FFB300',
+                        'haul-dark': '#1a1a1a',
+                        'haul-light': '#F5F5F5',
+                        'haul-gray': '#424242',
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            min-height: 100%;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0;
+            padding: 80px 16px 40px 16px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
+        body::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        /* Professional junk removal background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1560448204-603b3fc33ddc?q=80&w=2070&auto=format');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.3;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.7) 100%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .login-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 460px;
+            margin: auto;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(2px);
+            border-radius: 32px;
+            padding: 32px 32px;
+            text-align: center;
+            box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(245, 124, 0, 0.3);
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        /* Dark mode card */
+        .dark .login-card {
+            background: rgba(18, 18, 18, 0.96);
+            border-color: rgba(245, 124, 0, 0.4);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .logo a {
+            text-decoration: none;
+        }
+
+        .logo span {
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.5px;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .title h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+
+        .dark .title h1 { color: #ffffff; }
+
+        .title p {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .dark .title p { color: #aaa; }
+
+        .form-group {
+            margin-bottom: 18px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #374151;
+            margin-bottom: 6px;
+        }
+
+        .dark .form-group label { color: #d1d5db; }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #1a1a1a;
+            background: #f9fafb;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+        }
+
+        .dark .form-group input {
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .form-group input::placeholder {
+            color: #9ca3af;
+            font-weight: 400;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #F57C00;
+            box-shadow: 0 0 0 2px rgba(245, 124, 0, 0.25);
+        }
+
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .password-wrapper input {
+            padding-right: 44px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #9ca3af;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 6px;
+            transition: color 0.2s;
+        }
+
+        .toggle-password:hover { color: #F57C00; }
+
+        .forgot-link {
+            text-align: right;
+            margin-top: -8px;
+            margin-bottom: 20px;
+        }
+
+        .forgot-link a {
+            font-size: 11px;
+            color: #F57C00;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .forgot-link a:hover { text-decoration: underline; }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background: #F57C00;
+            border: none;
+            border-radius: 40px;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-family: 'Inter', sans-serif;
+            transition: background 0.2s, transform 0.05s;
+        }
+
+        .btn-login:hover { background: #1B5E20; }
+        .btn-login:active { transform: scale(0.98); }
+
+        .divider {
+            text-align: center;
+            margin: 20px 0 20px;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        .dark .divider::before { background: #333; }
+
+        .divider span {
+            position: relative;
+            background: #ffffff;
+            padding: 0 12px;
+            font-size: 10px;
+            font-weight: 600;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .dark .divider span { background: #121212; color: #777; }
+
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .social-btn {
+            flex: 1;
+            height: 44px;
+            border-radius: 40px;
+            border: 1px solid #e0e0e0;
+            background: #ffffff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+            transition: all 0.2s;
+        }
+
+        .dark .social-btn {
+            background: #1e1e1e;
+            border-color: #333;
+            color: #ddd;
+        }
+
+        .social-btn:hover {
+            border-color: #F57C00;
+            transform: translateY(-1px);
+        }
+
+        .social-btn i { font-size: 14px; }
+        .social-btn.google i { color: #DB4437; }
+        .social-btn.facebook i { color: #1877F2; }
+        .social-btn.apple i { color: #000; }
+        .dark .social-btn.apple i { color: #fff; }
+
+        .signup-link {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+
+        .dark .signup-link {
+            border-top-color: #2a2a2a;
+            color: #aaa;
+        }
+
+        .signup-link a {
+            color: #F57C00;
+            text-decoration: none;
+            font-weight: 700;
+            margin-left: 5px;
+        }
+
+        .signup-link a:hover { text-decoration: underline; }
+
+        .demo-badge {
+            margin-top: 16px;
+            text-align: center;
+            font-size: 10px;
+            color: #888;
+        }
+
+        .dark .demo-badge { color: #666; }
+
+        .top-controls {
+            position: fixed;
+            top: 18px;
+            right: 18px;
+            display: flex;
+            gap: 10px;
+            z-index: 200;
+        }
+
+        .control-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(20, 20, 24, 0.72);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(245, 124, 0, 0.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #f5f0e6;
+            font-size: 16px;
+            transition: 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .control-btn:hover {
+            background: #F57C00;
+            border-color: rgba(245, 124, 0, 0.8);
+            transform: scale(1.02);
+            color: white;
+        }
+
+        .dark .control-btn {
+            background: rgba(0, 0, 0, 0.65);
+            border-color: rgba(245, 124, 0, 0.7);
+        }
+        .dark .control-btn:hover { background: #F57C00; }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #F57C00;
+            color: white;
+            padding: 10px 22px;
+            border-radius: 60px;
+            font-size: 12px;
+            font-weight: 700;
+            z-index: 300;
+            animation: toastFade 2.5s ease forwards;
+            white-space: nowrap;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+            pointer-events: none;
+        }
+
+        @keyframes toastFade {
+            0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            12% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            88% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-6px); visibility: hidden; }
+        }
+
+        /* RTL Support */
+        [dir="rtl"] .top-controls { right: auto; left: 18px; }
+        [dir="rtl"] .password-wrapper input { padding-right: 14px; padding-left: 44px; }
+        [dir="rtl"] .toggle-password { right: auto; left: 12px; }
+        [dir="rtl"] .forgot-link { text-align: left; }
+        [dir="rtl"] .signup-link a { margin-left: 0; margin-right: 5px; }
+        [dir="rtl"] .social-login { flex-direction: row-reverse; }
+
+        /* Responsive adjustments - no scroll */
+        @media (max-width: 480px) {
+            .login-card { padding: 24px 24px; }
+            .title h1 { font-size: 22px; }
+            .social-btn { height: 40px; font-size: 11px; }
+            .btn-login { padding: 10px; }
+            .top-controls { top: 12px; right: 12px; }
+            .control-btn { width: 38px; height: 38px; font-size: 14px; }
+            [dir="rtl"] .top-controls { right: auto; left: 12px; }
+        }
+
+        @media (max-height: 650px) {
+            body { padding-top: 60px; padding-bottom: 20px; }
+            .login-card { padding: 16px 20px; border-radius: 24px; }
+            .title { margin-bottom: 12px; }
+            .title h1 { font-size: 18px; margin-bottom: 2px; }
+            .title p { font-size: 10px; }
+            .form-group { margin-bottom: 8px; }
+            .form-group label { font-size: 9px; margin-bottom: 3px; }
+            .form-group input { padding: 7px 10px; font-size: 11px; border-radius: 10px; }
+            .social-login { margin-bottom: 12px; gap: 8px; }
+            .social-btn { height: 34px; font-size: 10px; }
+            .btn-login { margin-bottom: 8px; padding: 8px; font-size: 10px; }
+            .logo { margin-bottom: 10px; }
+            .divider { margin: 10px 0; }
+            .signup-link { padding-top: 10px; font-size: 10px; }
+            .demo-badge { margin-top: 10px; font-size: 9px; }
+            .forgot-link { margin-bottom: 12px; }
+            .forgot-link a { font-size: 9px; }
+        }
+
+        @media (max-width: 360px) {
+            .social-btn span { display: none; }
+            .social-btn { width: 44px; flex: none; }
+            .social-btn i { font-size: 18px; margin: 0; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="top-controls">
+        <button class="control-btn" id="themeToggle" title="Toggle Theme"><i class="fas fa-moon" id="themeIcon"></i></button>
+        <button class="control-btn" id="rtlToggle" title="Toggle RTL Layout"><i class="fas fa-exchange-alt"></i></button>
+    </div>
+
+    <div class="login-container">
+        <div class="login-card animate-fade-up">
+            <div class="logo flex justify-center mb-6">
+                <a href="index.html" class="flex items-center gap-2 group">
+                        <i class="fas fa-dumpster text-2xl text-haul-secondary group-hover:text-haul-primary transition-colors"></i>
+                        <span class="text-2xl font-bold tracking-tight text-gray-800 dark:text-white">Haul<span class="text-haul-secondary">Swift</span></span>
+                    </a>
+            </div>
+            <div class="title">
+                <h1>Welcome Back</h1>
+                <p>Log in to your account</p>
+            </div>
+
+            <div class="social-login">
+                <button class="social-btn google" id="googleLogin"><i class="fab fa-google"></i><span>Google</span></button>
+                <button class="social-btn facebook" id="facebookLogin"><i class="fab fa-facebook-f"></i><span>Facebook</span></button>
+                <button class="social-btn apple" id="appleLogin"><i class="fab fa-apple"></i><span>Apple</span></button>
+            </div>
+
+            <div class="divider"><span>Or continue with email</span></div>
+
+            <form id="loginForm" novalidate>
+                <div class="form-group">
+                    <label>EMAIL ADDRESS</label>
+                    <input type="email" id="email" placeholder="hello@haulswift.com" autocomplete="email" required>
+                </div>
+                <div class="form-group">
+                    <label>PASSWORD</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password" required>
+                        <button type="button" class="toggle-password" data-target="password"><i class="fas fa-eye-slash"></i></button>
+                    </div>
+                </div>
+                <div class="forgot-link"><a href="#">Forgot password?</a></div>
+                <button type="submit" class="btn-login">Log In</button>
+            </form>
+
+            <div class="signup-link">
+                Don't have an account? <a href="signup.html">Sign Up</a>
+            </div>
+            <div class="demo-badge">
+                <i class="fas fa-truck"></i> Demo: demo@haulswift.com / any password
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showToast(message) {
+            const existingToast = document.querySelector('.toast');
+            if (existingToast) existingToast.remove();
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => { if (toast && toast.parentNode) toast.remove(); }, 2600);
+        }
+
+        // Password visibility toggle
+        document.querySelectorAll('.toggle-password').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const input = document.getElementById(btn.getAttribute('data-target'));
+                const icon = btn.querySelector('i');
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.className = 'fas fa-eye';
+                } else {
+                    input.type = 'password';
+                    icon.className = 'fas fa-eye-slash';
+                }
+            });
+        });
+
+        // Dark Mode
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+
+        function updateThemeIcon() {
+            if (html.classList.contains('dark')) {
+                themeIcon.className = 'fas fa-sun';
+            } else {
+                themeIcon.className = 'fas fa-moon';
+            }
+        }
+
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                html.classList.toggle('dark');
+                localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+                updateThemeIcon();
+                showToast(html.classList.contains('dark') ? 'Dark mode activated' : 'Light mode activated');
+            });
+        }
+
+        if (localStorage.getItem('theme') === 'dark') html.classList.add('dark');
+        updateThemeIcon();
+
+        // RTL Toggle
+        const rtlToggle = document.getElementById('rtlToggle');
+        if (rtlToggle) {
+            rtlToggle.addEventListener('click', () => {
+                if (document.documentElement.getAttribute('dir') === 'rtl') {
+                    document.documentElement.removeAttribute('dir');
+                    localStorage.setItem('dir', 'ltr');
+                    showToast('Layout set to LTR');
+                } else {
+                    document.documentElement.setAttribute('dir', 'rtl');
+                    localStorage.setItem('dir', 'rtl');
+                    showToast('Layout set to RTL');
+                }
+            });
+        }
+        if (localStorage.getItem('dir') === 'rtl') document.documentElement.setAttribute('dir', 'rtl');
+
+        // Social login handlers
+        const socialHandlers = { google: 'Google', facebook: 'Facebook', apple: 'Apple' };
+        Object.keys(socialHandlers).forEach(provider => {
+            const btn = document.getElementById(`${provider}Login`);
+            if (btn) {
+                btn.addEventListener('click', () => showToast(`${socialHandlers[provider]} login — coming soon`));
+            }
+        });
+
+        // Form submission
+        const loginForm = document.getElementById('loginForm');
+        if (loginForm) {
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value;
+                if (!email) return showToast('Please enter your email address');
+                if (!password) return showToast('Please enter your password');
+                if (email === 'demo@haulswift.com' || email === 'hello@haulswift.com') {
+                    showToast(`Welcome back! Redirecting to your dashboard...`);
+                    setTimeout(() => { window.location.href = 'dashboard.html'; }, 1500);
+                } else {
+                    showToast(`Logged in successfully! Redirecting...`);
+                    setTimeout(() => { window.location.href = 'dashboard.html'; }, 1500);
+                }
+            });
+        }
+
+    </script>
+</body>
+
+</html>
