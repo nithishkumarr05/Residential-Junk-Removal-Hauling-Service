@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>404 | Page Not Found – HaulSwift Junk Removal</title>
+    <link rel="icon" href="#" type="image/png">
+    <meta name="description" content="Oops! The page you're looking for has been hauled away. Return to HaulSwift for professional junk removal and hauling services.">
+
+    <!-- Tailwind CSS + Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        /* Professional junk removal background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1560448204-603b3fc33ddc?q=80&w=2070&auto=format');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.28;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.86) 0%, rgba(0, 0, 0, 0.72) 100%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .error-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .error-card {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(2px);
+            border-radius: clamp(24px, 4vw, 40px);
+            padding: clamp(20px, 4vh, 48px) clamp(16px, 4vw, 36px);
+            text-align: center;
+            box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(245, 124, 0, 0.35);
+            transition: all 0.3s ease;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Dark mode support */
+        .dark .error-card {
+            background: rgba(18, 18, 18, 0.96);
+            border-color: rgba(245, 124, 0, 0.45);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatTruck {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-12px) rotate(4deg);
+            }
+        }
+
+        @keyframes crumbFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-20vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .animate-fade-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .float-truck {
+            animation: floatTruck 4s ease-in-out infinite;
+        }
+
+        .code-404 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(60px, 15vh, 130px);
+            font-weight: 900;
+            background: linear-gradient(135deg, #F57C00 0%, #1B5E20 70%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            letter-spacing: -4px;
+        }
+
+        .truck-icon {
+            font-size: clamp(40px, 8vh, 70px);
+            display: inline-block;
+            animation: floatTruck 3s ease-in-out infinite;
+        }
+
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(18px, 4vh, 28px);
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-top: clamp(8px, 2vh, 16px);
+            margin-bottom: clamp(6px, 1.5vh, 12px);
+        }
+
+        .dark .title {
+            color: #ffffff;
+        }
+
+        .message {
+            color: #4b5563;
+            font-size: clamp(12px, 2vh, 15px);
+            line-height: 1.5;
+            max-width: 380px;
+            margin: 0 auto clamp(12px, 3vh, 28px) auto;
+        }
+
+        .dark .message {
+            color: #cbd5e1;
+        }
+
+        .button-group {
+            display: flex;
+            gap: clamp(8px, 2vw, 14px);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: clamp(12px, 3vh, 32px);
+        }
+
+        .btn-primary {
+            background: #F57C00;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #1B5E20;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(245, 124, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #F57C00;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid #F57C00;
+            transition: all 0.25s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #F57C00;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .dark .btn-secondary {
+            color: #FFB300;
+            border-color: #FFB300;
+        }
+        .dark .btn-secondary:hover {
+            background: #FFB300;
+            color: #1a1a1a;
+        }
+
+        .suggestion-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: clamp(10px, 2vw, 20px);
+            margin-top: clamp(12px, 2vh, 20px);
+            padding-top: clamp(12px, 2vh, 20px);
+            border-top: 1px solid rgba(245, 124, 0, 0.25);
+        }
+
+        .suggestion-links a {
+            color: #F57C00;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            transition: color 0.2s;
+        }
+
+        .suggestion-links a:hover {
+            color: #1B5E20;
+            text-decoration: underline;
+        }
+
+        .dark .suggestion-links a {
+            color: #FFB300;
+        }
+        .dark .suggestion-links a:hover {
+            color: #F57C00;
+        }
+
+        /* Floating crumbs */
+        .floating-crumb {
+            position: fixed;
+            font-size: 20px;
+            pointer-events: none;
+            z-index: 1;
+            animation: crumbFloat 12s infinite linear;
+            opacity: 0;
+        }
+
+        .brand-icon {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(14px, 3vh, 18px);
+            font-weight: 700;
+            font-style: italic;
+            margin-bottom: clamp(10px, 2vh, 20px);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .brand-icon i {
+            font-size: 22px;
+            color: #F57C00;
+        }
+        .brand-icon span:first-child { color: #F57C00; }
+        .brand-icon span:last-child { color: #1B5E20; }
+        .dark .brand-icon span:last-child { color: #FFB300; }
+
+        /* RTL Support */
+        [dir="rtl"] .btn-primary i,
+        [dir="rtl"] .btn-secondary i {
+            transform: scaleX(-1);
+        }
+
+        /* Responsive */
+        @media (max-width: 550px) {
+            .btn-primary, .btn-secondary {
+                padding: 10px 18px;
+                font-size: 10px;
+            }
+            .suggestion-links a {
+                font-size: 10px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .btn-primary, .btn-secondary {
+                padding: 8px 16px;
+                font-size: 9px;
+            }
+        }
+
+        @media (max-height: 550px) {
+            .truck-icon {
+                display: none; /* Hide decorative icon on very short screens */
+            }
+            .message {
+                display: none; /* Hide message text on very short screens to save space */
+            }
+        }
+
+        .search-hint {
+            margin-top: clamp(10px, 2vh, 20px);
+            font-size: clamp(9px, 2vh, 11px);
+            color: #9ca3af;
+        }
+        .dark .search-hint {
+            color: #6b7280;
+        }
+        .search-hint a {
+            color: #F57C00;
+            text-decoration: none;
+        }
+        .search-hint a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Floating decorative crumbs -->
+    <div class="floating-crumb" style="left: 5%; animation-duration: 14s; animation-delay: 0s;">🚛</div>
+    <div class="floating-crumb" style="left: 15%; animation-duration: 18s; animation-delay: 2s;">🗑️</div>
+    <div class="floating-crumb" style="left: 30%; animation-duration: 16s; animation-delay: 4s;">♻️</div>
+    <div class="floating-crumb" style="left: 55%; animation-duration: 20s; animation-delay: 1s;">🚛</div>
+    <div class="floating-crumb" style="left: 70%; animation-duration: 15s; animation-delay: 3s;">🗑️</div>
+    <div class="floating-crumb" style="left: 85%; animation-duration: 22s; animation-delay: 5s;">♻️</div>
+    <div class="floating-crumb" style="left: 92%; animation-duration: 17s; animation-delay: 2s;">🚛</div>
+    <div class="floating-crumb" style="left: 42%; animation-duration: 19s; animation-delay: 6s;">🗑️</div>
+
+    <div class="error-container">
+        <div class="error-card animate-fade-up">
+            <!-- Simple brand mark -->
+            <div class="brand-icon">
+                <i class="fas fa-dumpster"></i>
+                <span>Haul</span><span>Swift</span>
+            </div>
+
+            <!-- Animated Truck Icon -->
+            <div class="truck-icon">
+                🚛
+            </div>
+
+            <!-- 404 Code -->
+            <div class="code-404">
+                404
+            </div>
+
+            <!-- Error Title -->
+            <h1 class="title">
+                Oops! This Page Got Hauled Away
+            </h1>
+
+            <!-- Error Message -->
+            <p class="message">
+                The page you're looking for has been removed, moved, or never existed — like that old couch you finally got rid of. Don't worry, our trucks are still rolling. Let's get you back on track.
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="button-group">
+                <a href="index.html" class="btn-primary">
+                    <i class="fas fa-home"></i> Back to Home
+                </a>
+                <a href="contact.html" class="btn-secondary">
+                    <i class="fas fa-phone"></i> Contact Us
+                </a>
+            </div>
+
+            <!-- Helpful Quick Links -->
+            <div class="suggestion-links">
+                <a href="residential.html">Residential Junk Removal</a>
+                <a href="commercial.html">Commercial Hauling</a>
+                <a href="pricing.html">Get a Quote</a>
+                <a href="service.html">Our Services</a>
+                <a href="contact.html">Support</a>
+            </div>
+
+            <!-- Search hint -->
+            <div class="search-hint">
+                <i class="fas fa-search"></i> Need help finding something? <a href="contact.html">Call our dispatch team</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // Check for saved RTL preference
+            const savedDir = localStorage.getItem('direction');
+            if (savedDir === 'rtl') {
+                document.documentElement.setAttribute('dir', 'rtl');
+            }
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+            
+            // Simple theme toggle (user can toggle from browser or via localStorage)
+            // Add keyboard shortcut for fun (pressing 'h' goes home)
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'h' || e.key === 'H') {
+                    window.location.href = 'index.html';
+                }
+                if (e.key === 'c' || e.key === 'C') {
+                    window.location.href = 'contact.html';
+                }
+                if (e.key === 'q' || e.key === 'Q') {
+                    window.location.href = 'pricing.html';
+                }
+            });
+            
+        })();
+    </script>
+</body>
+
+</html>
