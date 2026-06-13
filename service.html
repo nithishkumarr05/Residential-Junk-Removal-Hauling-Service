@@ -141,10 +141,6 @@
             transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
 
-        .service-card:hover {
-            transform: translateY(-8px);
-        }
-
         .floating-particle {
             position: fixed;
             pointer-events: none;
@@ -377,59 +373,59 @@
                 <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white">What We Haul</h2>
                 <div class="w-20 h-[2px] bg-haul-secondary mx-auto mt-5"></div>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl service-card">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl service-card flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
                     <div class="flex items-center gap-4 mb-3">
                         <div class="w-12 h-12 bg-haul-secondary/10 rounded-xl flex items-center justify-center"><i
                                 class="fas fa-couch text-xl text-haul-secondary"></i></div>
                         <h3 class="font-bold text-lg">Furniture Removal</h3>
                     </div>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm">Sofas, mattresses, tables, chairs, cabinets — we
+                    <p class="text-gray-500 dark:text-gray-400 text-sm flex-grow">Sofas, mattresses, tables, chairs, cabinets — we
                         haul it all, large or small.</p>
                 </div>
-                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl service-card">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl service-card flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
                     <div class="flex items-center gap-4 mb-3">
                         <div class="w-12 h-12 bg-haul-secondary/10 rounded-xl flex items-center justify-center"><i
                                 class="fas fa-tv text-xl text-haul-secondary"></i></div>
                         <h3 class="font-bold text-lg">Electronics Recycling</h3>
                     </div>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm">TVs, computers, monitors, printers — responsibly
+                    <p class="text-gray-500 dark:text-gray-400 text-sm flex-grow">TVs, computers, monitors, printers — responsibly
                         recycled, never landfilled.</p>
                 </div>
-                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl service-card">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl service-card flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
                     <div class="flex items-center gap-4 mb-3">
                         <div class="w-12 h-12 bg-haul-secondary/10 rounded-xl flex items-center justify-center"><i
                                 class="fas fa-wrench text-xl text-haul-secondary"></i></div>
                         <h3 class="font-bold text-lg">Appliance Disposal</h3>
                     </div>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm">Refrigerators, washers, dryers, stoves,
+                    <p class="text-gray-500 dark:text-gray-400 text-sm flex-grow">Refrigerators, washers, dryers, stoves,
                         dishwashers — safe removal.</p>
                 </div>
-                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl service-card">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl service-card flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
                     <div class="flex items-center gap-4 mb-3">
                         <div class="w-12 h-12 bg-haul-secondary/10 rounded-xl flex items-center justify-center"><i
                                 class="fas fa-dumpster-fire text-xl text-haul-secondary"></i></div>
                         <h3 class="font-bold text-lg">Yard Waste Cleanup</h3>
                     </div>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm">Branches, leaves, grass clippings, landscaping
+                    <p class="text-gray-500 dark:text-gray-400 text-sm flex-grow">Branches, leaves, grass clippings, landscaping
                         debris — green disposal.</p>
                 </div>
-                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl service-card">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl service-card flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
                     <div class="flex items-center gap-4 mb-3">
                         <div class="w-12 h-12 bg-haul-secondary/10 rounded-xl flex items-center justify-center"><i
                                 class="fas fa-hard-hat text-xl text-haul-secondary"></i></div>
                         <h3 class="font-bold text-lg">Construction Debris</h3>
                     </div>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm">Concrete, drywall, lumber, roofing, tiles —
+                    <p class="text-gray-500 dark:text-gray-400 text-sm flex-grow">Concrete, drywall, lumber, roofing, tiles —
                         heavy load specialists.</p>
                 </div>
-                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl service-card">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl service-card flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
                     <div class="flex items-center gap-4 mb-3">
                         <div class="w-12 h-12 bg-haul-secondary/10 rounded-xl flex items-center justify-center"><i
                                 class="fas fa-boxes text-xl text-haul-secondary"></i></div>
                         <h3 class="font-bold text-lg">Garage Cleanouts</h3>
                     </div>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm">Declutter your garage — we haul boxes, old
+                    <p class="text-gray-500 dark:text-gray-400 text-sm flex-grow">Declutter your garage — we haul boxes, old
                         tools, sports equipment, and more.</p>
                 </div>
             </div>
@@ -498,7 +494,7 @@
                 <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white">How HaulSwift Works</h2>
                 <div class="w-20 h-[2px] bg-haul-secondary mx-auto mt-5"></div>
             </div>
-            <div class="grid md:grid-cols-4 gap-6">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="text-center">
                     <div
                         class="w-20 h-20 bg-haul-secondary/10 rounded-full flex items-center justify-center mx-auto mb-3">
@@ -547,29 +543,32 @@
                     Offerings</span>
                 <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white">Specialized Services</h2>
             </div>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 text-center shadow-md"><i
+            <div class="grid lg:grid-cols-3 gap-6 max-w-5xl mx-auto items-stretch">
+                <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 text-center shadow-md flex flex-col h-full hover:-translate-y-2 transition-transform duration-300"><i
                         class="fas fa-truck-moving text-3xl text-haul-secondary mb-3"></i>
                     <h3 class="font-bold text-lg">Full Property Cleanout</h3>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Complete residential or commercial property
-                        clearance — inside and out.</p><span
-                        class="inline-block mt-3 text-xs bg-haul-secondary/20 text-haul-secondary px-3 py-1 rounded-full">Call
-                        for pricing</span>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 flex-grow">Complete residential or commercial property
+                        clearance — inside and out.</p>
+                    <div class="mt-auto pt-4"><span
+                        class="inline-block text-xs bg-haul-secondary/20 text-haul-secondary px-3 py-1 rounded-full">Call
+                        for pricing</span></div>
                 </div>
-                <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 text-center shadow-md"><i
+                <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 text-center shadow-md flex flex-col h-full hover:-translate-y-2 transition-transform duration-300"><i
                         class="fas fa-recycle text-3xl text-haul-secondary mb-3"></i>
                     <h3 class="font-bold text-lg">Electronics Recycling</h3>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Secure data destruction and certified e-waste
-                        recycling.</p><span
-                        class="inline-block mt-3 text-xs bg-haul-secondary/20 text-haul-secondary px-3 py-1 rounded-full">$49+</span>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 flex-grow">Secure data destruction and certified e-waste
+                        recycling.</p>
+                    <div class="mt-auto pt-4"><span
+                        class="inline-block text-xs bg-haul-secondary/20 text-haul-secondary px-3 py-1 rounded-full">$49+</span></div>
                 </div>
-                <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 text-center shadow-md"><i
+                <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 text-center shadow-md flex flex-col h-full hover:-translate-y-2 transition-transform duration-300"><i
                         class="fas fa-hand-holding-heart text-3xl text-haul-secondary mb-3"></i>
                     <h3 class="font-bold text-lg">Donation Pickup</h3>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">We identify usable items and donate to local
-                        charities on your behalf.</p><span
-                        class="inline-block mt-3 text-xs bg-haul-secondary/20 text-haul-secondary px-3 py-1 rounded-full">Included
-                        free</span>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 flex-grow">We identify usable items and donate to local
+                        charities on your behalf.</p>
+                    <div class="mt-auto pt-4"><span
+                        class="inline-block text-xs bg-haul-secondary/20 text-haul-secondary px-3 py-1 rounded-full">Included
+                        free</span></div>
                 </div>
             </div>
         </div>

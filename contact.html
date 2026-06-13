@@ -141,10 +141,6 @@
             transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
 
-        .contact-card:hover {
-            transform: translateY(-6px);
-        }
-
         .floating-particle {
             position: fixed;
             pointer-events: none;
@@ -386,39 +382,43 @@
     <!-- SECTION 2: Contact Methods (4 Cards) -->
     <section class="py-20 lg:py-24 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-5">
-            <div class="grid md:grid-cols-4 gap-6">
-                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl text-center contact-card">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl text-center contact-card flex flex-col h-full hover:-translate-y-2">
                     <div
                         class="w-16 h-16 bg-haul-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-phone text-2xl text-haul-secondary"></i></div>
                     <h3 class="font-bold text-lg">Call Us</h3>
-                    <p class="text-sm text-gray-500 mb-2">Mon-Sat: 7am-7pm</p><a href="tel:+18885550123"
-                        class="text-haul-secondary font-semibold text-lg">(888) 555-0123</a>
+                    <p class="text-sm text-gray-500 mb-2 flex-grow">Mon-Sat: 7am-7pm</p>
+                    <div class="mt-auto"><a href="tel:+18885550123"
+                        class="text-haul-secondary font-semibold text-lg">(888) 555-0123</a></div>
                 </div>
-                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl text-center contact-card">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl text-center contact-card flex flex-col h-full hover:-translate-y-2">
                     <div
                         class="w-16 h-16 bg-haul-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-envelope text-2xl text-haul-secondary"></i></div>
                     <h3 class="font-bold text-lg">Email Us</h3>
-                    <p class="text-sm text-gray-500 mb-2">24/7 response</p><a href="mailto:hello@haulswift.com"
-                        class="text-haul-secondary font-semibold text-sm">hello@haulswift.com</a>
+                    <p class="text-sm text-gray-500 mb-2 flex-grow">24/7 response</p>
+                    <div class="mt-auto"><a href="mailto:hello@haulswift.com"
+                        class="text-haul-secondary font-semibold text-sm">hello@haulswift.com</a></div>
                 </div>
-                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl text-center contact-card">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl text-center contact-card flex flex-col h-full hover:-translate-y-2">
                     <div
                         class="w-16 h-16 bg-haul-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-comment-dots text-2xl text-haul-secondary"></i></div>
                     <h3 class="font-bold text-lg">Live Chat</h3>
-                    <p class="text-sm text-gray-500 mb-2">Instant support</p><button
+                    <p class="text-sm text-gray-500 mb-2 flex-grow">Instant support</p>
+                    <div class="mt-auto"><button
                         onclick="alert('Chat window would open here. Our team is online Mon-Fri 8am-6pm.')"
-                        class="text-haul-secondary font-semibold">Start Chat →</button>
+                        class="text-haul-secondary font-semibold">Start Chat →</button></div>
                 </div>
-                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl text-center contact-card">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl text-center contact-card flex flex-col h-full hover:-translate-y-2">
                     <div
                         class="w-16 h-16 bg-haul-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fab fa-facebook-messenger text-2xl text-haul-secondary"></i></div>
                     <h3 class="font-bold text-lg">Message Us</h3>
-                    <p class="text-sm text-gray-500 mb-2">Social media</p><a href="https://facebook.com"
-                        class="text-haul-secondary font-semibold">@haulswift</a>
+                    <p class="text-sm text-gray-500 mb-2 flex-grow">Social media</p>
+                    <div class="mt-auto"><a href="https://facebook.com"
+                        class="text-haul-secondary font-semibold">@haulswift</a></div>
                 </div>
             </div>
         </div>

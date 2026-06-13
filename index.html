@@ -141,10 +141,6 @@
             transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
 
-        .service-card:hover {
-            transform: translateY(-8px);
-        }
-
         /* Floating particles */
         .floating-particle {
             position: fixed;
@@ -387,41 +383,41 @@
                 <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white">Our Hauling Services</h2>
                 <div class="w-20 h-[2px] bg-haul-secondary mx-auto mt-5"></div>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl service-card text-center">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl service-card text-center flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
                     <div
                         class="w-16 h-16 bg-haul-secondary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-home text-2xl text-haul-secondary"></i>
                     </div>
                     <h3 class="font-bold text-lg mb-2">Residential</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm">Furniture, appliances, electronics, yard waste —
+                    <p class="text-gray-500 dark:text-gray-400 text-sm flex-grow">Furniture, appliances, electronics, yard waste —
                         we clear it all.</p>
                 </div>
-                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl service-card text-center">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl service-card text-center flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
                     <div
                         class="w-16 h-16 bg-haul-secondary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-building text-2xl text-haul-secondary"></i>
                     </div>
                     <h3 class="font-bold text-lg mb-2">Commercial</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm">Office furniture, retail waste, warehouse
+                    <p class="text-gray-500 dark:text-gray-400 text-sm flex-grow">Office furniture, retail waste, warehouse
                         cleanouts — fast service.</p>
                 </div>
-                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl service-card text-center">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl service-card text-center flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
                     <div
                         class="w-16 h-16 bg-haul-secondary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-hard-hat text-2xl text-haul-secondary"></i>
                     </div>
                     <h3 class="font-bold text-lg mb-2">Construction</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm">Debris, demolition waste, concrete, roofing — we
+                    <p class="text-gray-500 dark:text-gray-400 text-sm flex-grow">Debris, demolition waste, concrete, roofing — we
                         haul heavy loads.</p>
                 </div>
-                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl service-card text-center">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl service-card text-center flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
                     <div
                         class="w-16 h-16 bg-haul-secondary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-recycle text-2xl text-haul-secondary"></i>
                     </div>
                     <h3 class="font-bold text-lg mb-2">Eco-Friendly</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm">We recycle & donate — up to 80% diverted from
+                    <p class="text-gray-500 dark:text-gray-400 text-sm flex-grow">We recycle & donate — up to 80% diverted from
                         landfills.</p>
                 </div>
             </div>
@@ -475,43 +471,46 @@
                     class="text-haul-secondary text-[10px] tracking-[0.4em] font-bold block mb-3">Simple Pricing</span>
                 <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white">Transparent Rates</h2>
             </div>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl text-center">
+            <div class="grid lg:grid-cols-3 gap-6 items-stretch max-w-5xl mx-auto">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl text-center flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
                     <div class="text-2xl font-bold text-haul-secondary">Small Load</div>
                     <div class="text-3xl font-bold mt-2">$79<span class="text-sm font-normal">/load</span></div>
-                    <ul class="space-y-2 mt-4 text-sm">
+                    <ul class="space-y-2 mt-4 text-sm flex-grow">
                         <li>Studio / 1-bedroom</li>
                         <li>Up to 1/4 truck load</li>
                         <li>Same-day available</li>
-                    </ul><a href="#"
-                        class="inline-block mt-4 border border-haul-secondary text-haul-secondary hover:bg-haul-secondary hover:text-white px-5 py-2 rounded-full text-xs font-bold transition">Book
-                        Now</a>
+                    </ul>
+                    <div class="mt-auto pt-4"><a href="#"
+                        class="inline-block border border-haul-secondary text-haul-secondary hover:bg-haul-secondary hover:text-white px-5 py-2 rounded-full text-xs font-bold transition">Book
+                        Now</a></div>
                 </div>
                 <div
-                    class="bg-haul-secondary/10 dark:bg-haul-secondary/5 p-6 rounded-2xl text-center border-2 border-haul-secondary transform md:-translate-y-3 relative">
+                    class="bg-haul-secondary/10 dark:bg-haul-secondary/5 p-6 rounded-2xl text-center border-2 border-haul-secondary transform lg:-translate-y-3 relative flex flex-col h-full hover:lg:-translate-y-5 hover:-translate-y-2 transition-transform duration-300">
                     <div
                         class="absolute -top-3 left-1/2 -translate-x-1/2 bg-haul-secondary text-white text-[9px] px-3 py-1 rounded-full">
                         Most Popular</div>
                     <div class="text-2xl font-bold text-haul-secondary">Medium Load</div>
                     <div class="text-3xl font-bold mt-2">$149<span class="text-sm font-normal">/load</span></div>
-                    <ul class="space-y-2 mt-4 text-sm">
+                    <ul class="space-y-2 mt-4 text-sm flex-grow">
                         <li>2-3 bedroom home</li>
                         <li>Up to 1/2 truck load</li>
                         <li>Includes heavy items</li>
-                    </ul><a href="#"
-                        class="inline-block mt-4 bg-haul-secondary hover:bg-haul-primary text-white px-5 py-2 rounded-full text-xs font-bold transition">Book
-                        Now</a>
+                    </ul>
+                    <div class="mt-auto pt-4"><a href="#"
+                        class="inline-block bg-haul-secondary hover:bg-haul-primary text-white px-5 py-2 rounded-full text-xs font-bold transition">Book
+                        Now</a></div>
                 </div>
-                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl text-center">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl text-center flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
                     <div class="text-2xl font-bold text-haul-secondary">Large Load</div>
                     <div class="text-3xl font-bold mt-2">$249<span class="text-sm font-normal">/load</span></div>
-                    <ul class="space-y-2 mt-4 text-sm">
+                    <ul class="space-y-2 mt-4 text-sm flex-grow">
                         <li>4+ bedroom / whole house</li>
                         <li>Full truck load</li>
                         <li>Extra crew included</li>
-                    </ul><a href="#"
-                        class="inline-block mt-4 border border-haul-secondary text-haul-secondary hover:bg-haul-secondary hover:text-white px-5 py-2 rounded-full text-xs font-bold transition">Book
-                        Now</a>
+                    </ul>
+                    <div class="mt-auto pt-4"><a href="#"
+                        class="inline-block border border-haul-secondary text-haul-secondary hover:bg-haul-secondary hover:text-white px-5 py-2 rounded-full text-xs font-bold transition">Book
+                        Now</a></div>
                 </div>
             </div>
         </div>
@@ -520,20 +519,22 @@
     <!-- SECTION 5: Residential & Commercial Highlights -->
     <section class="py-20 lg:py-28 bg-haul-secondary/5 dark:bg-gray-800">
         <div class="max-w-7xl mx-auto px-5">
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg text-center"><i
+            <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg text-center flex flex-col h-full hover:-translate-y-2 transition-transform duration-300"><i
                         class="fas fa-house-chimney text-4xl text-haul-secondary mb-3"></i>
                     <h3 class="text-2xl font-bold mb-3">Residential Junk Removal</h3>
-                    <p class="text-gray-500 dark:text-gray-400 mb-4">From old couches to refrigerators, yard waste to
-                        garage cleanouts — our team handles it all with care and efficiency.</p><a href="#"
-                        class="text-haul-secondary font-semibold">Learn More →</a>
+                    <p class="text-gray-500 dark:text-gray-400 mb-4 flex-grow">From old couches to refrigerators, yard waste to
+                        garage cleanouts — our team handles it all with care and efficiency.</p>
+                    <div class="mt-auto"><a href="#"
+                        class="text-haul-secondary font-semibold inline-block">Learn More →</a></div>
                 </div>
-                <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg text-center"><i
+                <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg text-center flex flex-col h-full hover:-translate-y-2 transition-transform duration-300"><i
                         class="fas fa-store text-4xl text-haul-secondary mb-3"></i>
                     <h3 class="text-2xl font-bold mb-3">Commercial Hauling</h3>
-                    <p class="text-gray-500 dark:text-gray-400 mb-4">Office furniture, retail fixtures, construction
-                        debris, and recurring waste management for businesses of all sizes.</p><a href="#"
-                        class="text-haul-secondary font-semibold">Learn More →</a>
+                    <p class="text-gray-500 dark:text-gray-400 mb-4 flex-grow">Office furniture, retail fixtures, construction
+                        debris, and recurring waste management for businesses of all sizes.</p>
+                    <div class="mt-auto"><a href="#"
+                        class="text-haul-secondary font-semibold inline-block">Learn More →</a></div>
                 </div>
             </div>
         </div>

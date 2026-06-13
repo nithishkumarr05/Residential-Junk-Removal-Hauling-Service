@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Sign Up | HaulSwift – Professional Junk Removal & Hauling</title>
-    <link rel="icon" href="#" type="image/png">
+    <link rel="icon" href="assests/favicon.png" type="image/png">
     <meta name="description"
         content="Create your HaulSwift account — schedule junk removal services, track hauls, get exclusive offers, and manage your preferences.">
 
@@ -45,7 +45,6 @@
             box-sizing: border-box;
         }
 
-        /* NO SCROLLING ALLOWED - FIXED VIEWPORT */
         html, body {
             width: 100%;
             height: 100%;
@@ -64,7 +63,8 @@
             align-items: center;
             justify-content: center;
             margin: 0;
-            padding: 20px;
+            padding: 10px;
+            box-sizing: border-box;
         }
 
         /* Professional junk removal background */
@@ -104,15 +104,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 16px;
+            padding: 10px;
         }
 
-        /* Card styling - FULLY RESPONSIVE with NO SCROLL */
+        /* Card styling - FULLY RESPONSIVE */
         .signup-card {
             background: rgba(255, 255, 255, 0.96);
             backdrop-filter: blur(2px);
             border-radius: 32px;
-            padding: clamp(16px, 3vh, 32px) clamp(20px, 4vw, 32px);
+            padding: clamp(16px, 2vh, 24px) clamp(20px, 3vw, 32px);
             text-align: center;
             box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(245, 124, 0, 0.3);
@@ -123,21 +123,6 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            overflow-y: auto;
-            scrollbar-width: thin;
-        }
-
-        /* Custom scrollbar for card content if needed (minimal) */
-        .signup-card::-webkit-scrollbar {
-            width: 4px;
-        }
-        .signup-card::-webkit-scrollbar-track {
-            background: rgba(0,0,0,0.05);
-            border-radius: 10px;
-        }
-        .signup-card::-webkit-scrollbar-thumb {
-            background: #F57C00;
-            border-radius: 10px;
         }
 
         /* Dark mode card */
@@ -165,52 +150,51 @@
             letter-spacing: -0.5px;
         }
 
-        /* Title styling */
         .title {
             text-align: center;
-            margin-bottom: clamp(12px, 2vh, 24px);
+            margin-bottom: clamp(8px, 1.5vh, 16px);
         }
 
         .title h1 {
             font-family: 'Inter', sans-serif;
-            font-size: clamp(20px, 4vw, 26px);
+            font-size: 26px;
             font-weight: 800;
             color: #1a1a1a;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
 
         .dark .title h1 { color: #ffffff; }
 
         .title p {
-            font-size: clamp(10px, 2.5vw, 13px);
+            font-size: 13px;
             color: #666;
         }
 
         .dark .title p { color: #aaa; }
 
         .form-group {
-            margin-bottom: clamp(10px, 1.8vh, 18px);
+            margin-bottom: clamp(6px, 1vh, 12px);
             text-align: left;
         }
 
         .form-group label {
             display: block;
-            font-size: clamp(8px, 2vw, 10px);
+            font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: #374151;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
 
         .dark .form-group label { color: #d1d5db; }
 
         .form-group input {
             width: 100%;
-            padding: clamp(8px, 1.5vh, 12px) clamp(10px, 2vw, 14px);
+            padding: clamp(8px, 1.2vh, 12px) 12px;
             border: 1px solid #e5e7eb;
-            border-radius: 14px;
-            font-size: clamp(11px, 2.2vw, 13px);
+            border-radius: 12px;
+            font-size: clamp(11px, 2vw, 13px);
             font-weight: 500;
             color: #1a1a1a;
             background: #f9fafb;
@@ -254,7 +238,7 @@
             border: none;
             color: #9ca3af;
             cursor: pointer;
-            font-size: clamp(12px, 2vw, 14px);
+            font-size: 14px;
             padding: 6px;
             transition: color 0.2s;
         }
@@ -265,8 +249,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            margin: clamp(8px, 1.5vh, 16px) 0 clamp(10px, 1.8vh, 18px);
-            flex-wrap: nowrap;
+            margin: clamp(4px, 1vh, 10px) 0;
         }
 
         .checkbox-group input {
@@ -278,10 +261,10 @@
         }
 
         .checkbox-group label {
-            font-size: clamp(9px, 2vw, 11px);
+            font-size: 11px;
             color: #666;
             cursor: pointer;
-            line-height: 1.3;
+            line-height: 1.4;
             text-align: left;
         }
 
@@ -297,17 +280,17 @@
 
         .btn-signup {
             width: 100%;
-            padding: clamp(9px, 1.8vh, 12px);
+            padding: 12px;
             background: #F57C00;
             border: none;
             border-radius: 40px;
             color: white;
-            font-size: clamp(10px, 2vw, 12px);
+            font-size: 12px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             cursor: pointer;
-            margin-bottom: clamp(8px, 1.5vh, 10px);
+            margin-bottom: 10px;
             font-family: 'Inter', sans-serif;
             transition: background 0.2s, transform 0.05s;
         }
@@ -337,7 +320,7 @@
             position: relative;
             background: #ffffff;
             padding: 0 12px;
-            font-size: clamp(8px, 2vw, 10px);
+            font-size: 10px;
             font-weight: 600;
             color: #888;
             text-transform: uppercase;
@@ -349,15 +332,13 @@
         .social-login {
             display: flex;
             justify-content: center;
-            gap: clamp(8px, 2vw, 12px);
-            margin-bottom: clamp(12px, 2vh, 24px);
-            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: clamp(10px, 1.5vh, 16px);
         }
 
         .social-btn {
             flex: 1;
-            min-width: 80px;
-            height: clamp(36px, 6vh, 44px);
+            height: 44px;
             border-radius: 40px;
             border: 1px solid #e0e0e0;
             background: #ffffff;
@@ -366,7 +347,7 @@
             align-items: center;
             justify-content: center;
             gap: 6px;
-            font-size: clamp(10px, 2vw, 12px);
+            font-size: 12px;
             font-weight: 600;
             color: #333;
             transition: all 0.2s;
@@ -384,7 +365,7 @@
         }
 
         .social-btn i { 
-            font-size: clamp(12px, 2.5vw, 14px); 
+            font-size: 14px; 
         }
         .social-btn.google i { color: #DB4437; }
         .social-btn.facebook i { color: #1877F2; }
@@ -395,7 +376,7 @@
             text-align: center;
             font-size: clamp(10px, 2vw, 12px);
             color: #666;
-            padding-top: clamp(10px, 1.8vh, 14px);
+            padding-top: clamp(8px, 1vh, 12px);
             border-top: 1px solid #eee;
         }
 
@@ -486,142 +467,33 @@
         [dir="rtl"] .login-link a { margin-left: 0; margin-right: 5px; }
         [dir="rtl"] .social-login { flex-direction: row-reverse; }
 
-        /* EXTREME SMALL DEVICES - hide text on social buttons if needed */
-        @media (max-width: 420px) {
-            .social-btn span { 
-                display: none; 
-            }
-            .social-btn {
-                min-width: 44px;
-                flex: 0 1 auto;
-                width: 44px;
-            }
-            .social-btn i { 
-                font-size: 16px; 
-                margin: 0;
-            }
-            .checkbox-group {
-                gap: 6px;
-            }
-            .checkbox-group label {
-                font-size: 8px;
-            }
-            .checkbox-group input {
-                width: 12px;
-                height: 12px;
-            }
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .signup-card { padding: 24px 20px; }
+            .title h1 { font-size: 22px; }
+            .social-btn { height: 40px; font-size: 11px; }
+            .btn-signup { padding: 10px; }
+            .top-controls { top: 12px; right: 12px; }
+            .control-btn { width: 38px; height: 38px; font-size: 14px; }
+            [dir="rtl"] .top-controls { right: auto; left: 12px; }
+            .checkbox-group label { font-size: 10px; }
         }
 
-        /* Landscape mode adjustments */
-        @media (max-height: 600px) and (orientation: landscape) {
-            .signup-card {
-                padding: 12px 24px;
-            }
-            .logo {
-                margin-bottom: 6px !important;
-            }
-            .logo span {
-                font-size: 18px !important;
-            }
-            .title {
-                margin-bottom: 8px;
-            }
-            .title h1 {
-                font-size: 18px;
-                margin-bottom: 2px;
-            }
-            .title p {
-                font-size: 9px;
-                display: none;
-            }
-            .form-group {
-                margin-bottom: 6px;
-            }
-            .form-group label {
-                font-size: 7px;
-                margin-bottom: 2px;
-            }
-            .form-group input {
-                padding: 5px 8px;
-                font-size: 10px;
-            }
-            .social-login {
-                margin-bottom: 8px;
-            }
-            .social-btn {
-                height: 30px;
-                min-width: 60px;
-            }
-            .social-btn span {
-                display: inline-block;
-                font-size: 9px;
-            }
-            .social-btn i {
-                font-size: 11px;
-            }
-            .divider {
-                margin: 6px 0;
-            }
-            .checkbox-group {
-                margin: 4px 0 6px;
-            }
-            .btn-signup {
-                padding: 6px;
-                font-size: 9px;
-                margin-bottom: 6px;
-            }
-            .login-link {
-                padding-top: 6px;
-                font-size: 9px;
-            }
-        }
-
-        /* Very small height devices */
-        @media (max-height: 500px) and (orientation: landscape) {
-            .signup-card {
-                padding: 8px 20px;
-            }
-            .logo {
-                margin-bottom: 4px !important;
-            }
-            .logo span {
-                font-size: 16px !important;
-            }
-            .title h1 {
-                font-size: 16px;
-            }
-            .title p {
-                display: none;
-            }
-            .form-group {
-                margin-bottom: 4px;
-            }
-            .form-group input {
-                padding: 4px 8px;
-                font-size: 9px;
-            }
-            .social-btn {
-                height: 26px;
-                min-width: 50px;
-            }
-            .social-btn span {
-                font-size: 8px;
-            }
-            .checkbox-group label {
-                font-size: 7px;
-            }
-            .btn-signup {
-                padding: 5px;
-                font-size: 8px;
-            }
-        }
-
-        /* Prevent any body scroll on all devices */
-        @media (max-width: 10000px) {
-            body {
-                overflow: hidden;
-                position: fixed;
-            }
+        @media (max-height: 650px) {
+            body { padding-top: 60px; padding-bottom: 20px; }
+            .signup-card { padding: 16px 20px; border-radius: 24px; }
+            .title { margin-bottom: 12px; }
+            .title h1 { font-size: 18px; margin-bottom: 2px; }
+            .title p { font-size: 10px; display: none; }
+            .form-group { margin-bottom: 8px; }
+            .form-group label { font-size: 9px; margin-bottom: 3px; }
+            .form-group input { padding: 7px 10px; font-size: 11px; border-radius: 10px; }
+            .social-login { margin-bottom: 12px; gap: 8px; }
+            .social-btn { height: 34px; font-size: 10px; }
+            .btn-signup { margin-bottom: 8px; padding: 8px; font-size: 10px; }
+            .logo { margin-bottom: 10px; }
+            .divider { margin: 10px 0; }
+            .checkbox-group { margin: 8px 0; }
         }
     </style>
 </head>
@@ -657,30 +529,28 @@
             <div class="divider"><span>Or sign up with email</span></div>
 
             <form id="signupForm" novalidate>
-                <div class="form-group">
-                    <label>FULL NAME</label>
-                    <input type="text" id="fullname" placeholder="John Smith" autocomplete="name">
-                </div>
-                <div class="form-group">
-                    <label>EMAIL ADDRESS</label>
-                    <input type="email" id="email" placeholder="hello@haulswift.com" autocomplete="email" required>
-                </div>
-                <div class="form-group">
-                    <label>PHONE NUMBER (OPTIONAL)</label>
-                    <input type="tel" id="phone" placeholder="(555) 555-1234" autocomplete="tel">
-                </div>
-                <div class="form-group">
-                    <label>PASSWORD</label>
-                    <div class="password-wrapper">
-                        <input type="password" id="password" placeholder="Create a strong password" autocomplete="new-password" required>
-                        <button type="button" class="toggle-password" data-target="password"><i class="fas fa-eye-slash"></i></button>
+                <div class="grid grid-cols-2 gap-x-3">
+                    <div class="form-group">
+                        <label>FULL NAME</label>
+                        <input type="text" id="fullname" placeholder="John Smith" autocomplete="name">
                     </div>
-                </div>
-                <div class="form-group">
-                    <label>CONFIRM PASSWORD</label>
-                    <div class="password-wrapper">
-                        <input type="password" id="confirmPassword" placeholder="Confirm your password" autocomplete="new-password" required>
-                        <button type="button" class="toggle-password" data-target="confirmPassword"><i class="fas fa-eye-slash"></i></button>
+                    <div class="form-group">
+                        <label>EMAIL ADDRESS</label>
+                        <input type="email" id="email" placeholder="hello@haulswift.com" autocomplete="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>PASSWORD</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="password" placeholder="Create password" autocomplete="new-password" required>
+                            <button type="button" class="toggle-password" data-target="password"><i class="fas fa-eye-slash"></i></button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>CONFIRM PASSWORD</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="confirmPassword" placeholder="Confirm password" autocomplete="new-password" required>
+                            <button type="button" class="toggle-password" data-target="confirmPassword"><i class="fas fa-eye-slash"></i></button>
+                        </div>
                     </div>
                 </div>
 
@@ -819,31 +689,7 @@
             });
         }
 
-        // Ensure NO SCROLLING on body - disable all scroll events
-        function preventScroll(e) {
-            e.preventDefault();
-            return false;
-        }
-        
-        // Lock body scroll completely
-        document.body.addEventListener('wheel', preventScroll, { passive: false });
-        document.body.addEventListener('touchmove', preventScroll, { passive: false });
-        document.body.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'PageDown' || e.key === 'PageUp' || e.key === 'Home' || e.key === 'End') {
-                e.preventDefault();
-            }
-        });
-        
-        // Allow scrolling ONLY inside the card if content overflows
-        const signupCard = document.querySelector('.signup-card');
-        if (signupCard) {
-            signupCard.addEventListener('wheel', (e) => {
-                e.stopPropagation();
-            });
-            signupCard.addEventListener('touchmove', (e) => {
-                e.stopPropagation();
-            });
-        }
+
     </script>
 </body>
 
