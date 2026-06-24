@@ -37,170 +37,7 @@
             }
         }
     </script>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-
-        body {
-            overflow-x: hidden;
-            font-family: 'Inter', sans-serif;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes floatTruck {
-
-            0%,
-            100% {
-                transform: translateY(0) rotate(0deg);
-            }
-
-            50% {
-                transform: translateY(-15px) rotate(2deg);
-            }
-        }
-
-        .animate-fade-up {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        .animate-float {
-            animation: floatTruck 6s ease-in-out infinite;
-        }
-
-        #mobile-menu {
-            max-height: calc(100vh - 64px);
-            overflow-y: auto;
-            transition: all 0.3s ease;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .mobile-dropdown-icon {
-            transition: transform 0.3s ease;
-        }
-
-        .mobile-dropdown-icon.rotate {
-            transform: rotate(180deg);
-        }
-
-        body.menu-open {
-            overflow: hidden;
-        }
-
-        @media (max-width: 1280px) {
-            .desktop-nav {
-                display: none;
-            }
-        }
-
-        .nav-link {
-            position: relative;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #F57C00;
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-
-        [dir="rtl"] .nav-link::after {
-            left: auto;
-            right: 0;
-        }
-
-        .contact-card {
-            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-        }
-
-        .floating-particle {
-            position: fixed;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.1;
-            font-size: 24px;
-        }
-
-        .dark .bg-white\/95 {
-            background-color: #0a0a0a !important;
-        }
-
-        .dark .bg-gray-50 {
-            background-color: #1a1a1a !important;
-        }
-
-        .dark .text-gray-600 {
-            color: #cbd5e1 !important;
-        }
-
-        .dark h1,
-        .dark h2,
-        .dark h3,
-        .dark h4 {
-            color: #ffffff !important;
-        }
-
-        nav {
-            background-color: #ffffff !important;
-        }
-
-        .dark nav {
-            background-color: #0a0a0a !important;
-        }
-
-        .map-container iframe {
-            width: 100%;
-            height: 100%;
-            min-height: 300px;
-            border-radius: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .map-container iframe {
-                min-height: 250px;
-            }
-        }
-
-        .faq-item {
-            transition: all 0.3s ease;
-        }
-
-        .faq-item:hover {
-            transform: translateX(5px);
-        }
-
-        [dir="rtl"] .faq-item:hover {
-            transform: translateX(-5px);
-        }
-    </style>
+    <link rel="stylesheet" href="global.css">
 </head>
 
 <body class="bg-white text-gray-800 dark:bg-haul-dark dark:text-gray-100 font-sans antialiased">
@@ -517,36 +354,66 @@
                     class="text-haul-secondary text-[10px] tracking-[0.4em] font-bold block mb-3">Quick Answers</span>
                 <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white">Frequently Asked Questions</h2>
             </div>
-            <div class="grid md:grid-cols-2 gap-4">
-                <div class="bg-white dark:bg-gray-900 p-5 rounded-xl faq-item">
-                    <h3 class="font-bold mb-2">How quickly can you come out?</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">We offer same-day service for calls received
-                        before noon. Emergency service available 24/7.</p>
+            <div class="max-w-3xl mx-auto mb-12 space-y-4">
+                <!-- Accordion Item 1 -->
+                <div class="accordion-item bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-700">
+                    <button class="w-full px-6 py-5 flex justify-between items-center focus:outline-none" onclick="this.parentElement.classList.toggle('active')">
+                        <h3 class="font-heading font-bold text-left text-gray-800 dark:text-gray-100">How quickly can you come out?</h3>
+                        <i class="fas fa-chevron-down text-haul-secondary accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content px-6 bg-gray-50 dark:bg-gray-800">
+                        <p class="text-sm text-gray-500 dark:text-gray-400 pb-5 pt-2">We offer same-day service for calls received before noon. Emergency service available 24/7.</p>
+                    </div>
                 </div>
-                <div class="bg-white dark:bg-gray-900 p-5 rounded-xl faq-item">
-                    <h3 class="font-bold mb-2">Do you provide free estimates?</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">Yes! All quotes are free and no-obligation.
-                        We'll give you a firm price before any work begins.</p>
+                <!-- Accordion Item 2 -->
+                <div class="accordion-item bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-700">
+                    <button class="w-full px-6 py-5 flex justify-between items-center focus:outline-none" onclick="this.parentElement.classList.toggle('active')">
+                        <h3 class="font-heading font-bold text-left text-gray-800 dark:text-gray-100">Do you provide free estimates?</h3>
+                        <i class="fas fa-chevron-down text-haul-secondary accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content px-6 bg-gray-50 dark:bg-gray-800">
+                        <p class="text-sm text-gray-500 dark:text-gray-400 pb-5 pt-2">Yes! All quotes are free and no-obligation. We'll give you a firm price before any work begins.</p>
+                    </div>
                 </div>
-                <div class="bg-white dark:bg-gray-900 p-5 rounded-xl faq-item">
-                    <h3 class="font-bold mb-2">What areas do you serve?</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">Greater Los Angeles area, including Orange
-                        County, San Bernardino, Riverside, and Ventura County.</p>
+                <!-- Accordion Item 3 -->
+                <div class="accordion-item bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-700">
+                    <button class="w-full px-6 py-5 flex justify-between items-center focus:outline-none" onclick="this.parentElement.classList.toggle('active')">
+                        <h3 class="font-heading font-bold text-left text-gray-800 dark:text-gray-100">What areas do you serve?</h3>
+                        <i class="fas fa-chevron-down text-haul-secondary accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content px-6 bg-gray-50 dark:bg-gray-800">
+                        <p class="text-sm text-gray-500 dark:text-gray-400 pb-5 pt-2">Greater Los Angeles area, including Orange County, San Bernardino, Riverside, and Ventura County.</p>
+                    </div>
                 </div>
-                <div class="bg-white dark:bg-gray-900 p-5 rounded-xl faq-item">
-                    <h3 class="font-bold mb-2">Do you recycle or donate items?</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">Absolutely! We donate usable furniture and
-                        appliances, and recycle electronics, metal, and more.</p>
+                <!-- Accordion Item 4 -->
+                <div class="accordion-item bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-700">
+                    <button class="w-full px-6 py-5 flex justify-between items-center focus:outline-none" onclick="this.parentElement.classList.toggle('active')">
+                        <h3 class="font-heading font-bold text-left text-gray-800 dark:text-gray-100">Do you recycle or donate items?</h3>
+                        <i class="fas fa-chevron-down text-haul-secondary accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content px-6 bg-gray-50 dark:bg-gray-800">
+                        <p class="text-sm text-gray-500 dark:text-gray-400 pb-5 pt-2">Absolutely! We donate usable furniture and appliances, and recycle electronics, metal, and more.</p>
+                    </div>
                 </div>
-                <div class="bg-white dark:bg-gray-900 p-5 rounded-xl faq-item">
-                    <h3 class="font-bold mb-2">Are you licensed and insured?</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">Yes — fully licensed, bonded, and insured for
-                        your peace of mind.</p>
+                <!-- Accordion Item 5 -->
+                <div class="accordion-item bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-700">
+                    <button class="w-full px-6 py-5 flex justify-between items-center focus:outline-none" onclick="this.parentElement.classList.toggle('active')">
+                        <h3 class="font-heading font-bold text-left text-gray-800 dark:text-gray-100">Are you licensed and insured?</h3>
+                        <i class="fas fa-chevron-down text-haul-secondary accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content px-6 bg-gray-50 dark:bg-gray-800">
+                        <p class="text-sm text-gray-500 dark:text-gray-400 pb-5 pt-2">Yes — fully licensed, bonded, and insured for your peace of mind.</p>
+                    </div>
                 </div>
-                <div class="bg-white dark:bg-gray-900 p-5 rounded-xl faq-item">
-                    <h3 class="font-bold mb-2">What payment methods do you accept?</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">Cash, credit card, debit card, Zelle, Venmo, and
-                        company checks.</p>
+                <!-- Accordion Item 6 -->
+                <div class="accordion-item bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-700">
+                    <button class="w-full px-6 py-5 flex justify-between items-center focus:outline-none" onclick="this.parentElement.classList.toggle('active')">
+                        <h3 class="font-heading font-bold text-left text-gray-800 dark:text-gray-100">What payment methods do you accept?</h3>
+                        <i class="fas fa-chevron-down text-haul-secondary accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content px-6 bg-gray-50 dark:bg-gray-800">
+                        <p class="text-sm text-gray-500 dark:text-gray-400 pb-5 pt-2">Cash, credit card, debit card, Zelle, Venmo, and company checks.</p>
+                    </div>
                 </div>
             </div>
         </div>

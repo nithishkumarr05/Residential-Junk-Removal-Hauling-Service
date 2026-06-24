@@ -467,33 +467,98 @@
         [dir="rtl"] .login-link a { margin-left: 0; margin-right: 5px; }
         [dir="rtl"] .social-login { flex-direction: row-reverse; }
 
-        /* Responsive adjustments */
+        /* Responsive Breakpoints */
+        
+        /* Desktop (1025px and above) */
+        @media (min-width: 1025px) {
+            .signup-card {
+                max-width: 520px;
+                padding: 32px 40px;
+            }
+            .title h1 { font-size: 26px; }
+            .form-group input { padding: 12px 14px; font-size: 13px; }
+            .btn-signup { padding: 12px; font-size: 12px; }
+        }
+
+        /* Tablet/Laptop (1024px) */
+        @media (max-width: 1024px) {
+            .signup-card { max-width: 480px; padding: 32px 30px; }
+            .title h1 { font-size: 26px; }
+        }
+
+        /* Mobile/Tablet (768px) */
+        @media (max-width: 768px) {
+            .signup-card { max-width: 420px; padding: 28px 24px; border-radius: 28px; }
+            .title h1 { font-size: 24px; }
+            .social-btn { height: 42px; font-size: 12px; }
+            .btn-signup { padding: 12px; }
+        }
+
+        /* Mobile (480px) */
         @media (max-width: 480px) {
-            .signup-card { padding: 24px 20px; }
+            .signup-card { max-width: 100%; padding: 24px 20px; border-radius: 24px; }
             .title h1 { font-size: 22px; }
             .social-btn { height: 40px; font-size: 11px; }
-            .btn-signup { padding: 10px; }
+            .social-login { gap: 8px; }
+            .btn-signup { padding: 10px; font-size: 11px; }
             .top-controls { top: 12px; right: 12px; }
             .control-btn { width: 38px; height: 38px; font-size: 14px; }
             [dir="rtl"] .top-controls { right: auto; left: 12px; }
             .checkbox-group label { font-size: 10px; }
         }
 
-        @media (max-height: 650px) {
-            body { padding-top: 60px; padding-bottom: 20px; }
-            .signup-card { padding: 16px 20px; border-radius: 24px; }
+        /* Small Mobile (320px) */
+        @media (max-width: 320px) {
+            .signup-card { padding: 16px 14px; border-radius: 20px; }
+            .title h1 { font-size: 20px; }
+            .title p { font-size: 11px; }
+            .form-group label { font-size: 9px; }
+            .form-group input { padding: 8px 10px; font-size: 11px; }
+            .social-btn { height: 36px; font-size: 10px; flex-direction: column; justify-content: center; gap: 2px; }
+            .social-btn i { font-size: 12px; }
+            .social-login { gap: 6px; }
+            .btn-signup { padding: 8px; font-size: 10px; margin-bottom: 8px; }
+            .checkbox-group { gap: 6px; }
+            .checkbox-group label { font-size: 9px; }
+            .login-link { font-size: 10px; padding-top: 8px; }
+        }
+
+        @media (max-height: 850px) {
+            .signup-card { padding: 20px 30px; }
+            .logo { margin-bottom: 16px; }
             .title { margin-bottom: 12px; }
-            .title h1 { font-size: 18px; margin-bottom: 2px; }
-            .title p { font-size: 10px; display: none; }
             .form-group { margin-bottom: 8px; }
-            .form-group label { font-size: 9px; margin-bottom: 3px; }
-            .form-group input { padding: 7px 10px; font-size: 11px; border-radius: 10px; }
-            .social-login { margin-bottom: 12px; gap: 8px; }
-            .social-btn { height: 34px; font-size: 10px; }
-            .btn-signup { margin-bottom: 8px; padding: 8px; font-size: 10px; }
-            .logo { margin-bottom: 10px; }
+            .social-login { margin-bottom: 12px; }
+            .divider { margin: 12px 0; }
+        }
+
+        @media (max-height: 750px) {
+            .signup-card { padding: 16px 24px; }
+            .logo { margin-bottom: 12px; }
+            .title { margin-bottom: 8px; }
+            .title h1 { font-size: 22px; margin-bottom: 2px; }
+            .title p { display: none; }
+            .form-group { margin-bottom: 6px; }
+            .form-group input { padding: 8px 12px; }
+            .social-btn { height: 38px; }
+            .social-login { margin-bottom: 8px; }
             .divider { margin: 10px 0; }
-            .checkbox-group { margin: 8px 0; }
+            .btn-signup { margin-bottom: 6px; padding: 10px; }
+            .checkbox-group { margin: 6px 0; }
+        }
+
+        @media (max-height: 650px) {
+            body { padding-top: 50px; padding-bottom: 10px; }
+            .signup-card { padding: 12px 20px; border-radius: 20px; }
+            .title h1 { font-size: 18px; }
+            .form-group label { font-size: 9px; margin-bottom: 2px; }
+            .form-group input { padding: 6px 10px; font-size: 11px; border-radius: 8px; }
+            .social-btn { height: 34px; font-size: 10px; }
+            .btn-signup { margin-bottom: 6px; padding: 8px; font-size: 10px; }
+            .logo { margin-bottom: 8px; }
+            .divider { margin: 8px 0; }
+            .checkbox-group { margin: 4px 0; }
+            .login-link { padding-top: 6px; }
         }
     </style>
 </head>
@@ -529,7 +594,7 @@
             <div class="divider"><span>Or sign up with email</span></div>
 
             <form id="signupForm" novalidate>
-                <div class="grid grid-cols-2 gap-x-3">
+                <div class="flex flex-col">
                     <div class="form-group">
                         <label>FULL NAME</label>
                         <input type="text" id="fullname" placeholder="John Smith" autocomplete="name">

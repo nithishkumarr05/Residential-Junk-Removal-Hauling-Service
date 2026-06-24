@@ -217,6 +217,25 @@
             margin-left: 0;
         }
 
+        /* RTL Sidebar Fixes */
+        html[dir="rtl"] #sidebar {
+            left: auto;
+            right: 0;
+            border-right-width: 0;
+            border-left-width: 1px;
+            transform: translateX(100%);
+        }
+
+        @media (min-width: 1024px) {
+            html[dir="rtl"] #sidebar {
+                transform: translateX(0);
+            }
+            html[dir="rtl"] main {
+                margin-left: 0 !important;
+                margin-right: 16rem !important; /* 64 * 0.25rem = 16rem */
+            }
+        }
+
         .status-delivered {
             background: rgba(43, 122, 75, 0.15);
             color: #2B7A4B;
