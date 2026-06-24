@@ -4,17 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Commercial Junk Removal | HaulSwift – Business Hauling Services</title>
+    <title>Commercial Junk Removal | HaulSwift – Business Solutions</title>
     <link rel="icon" href="assests/favicon.png" type="image/png">
     <meta name="description"
-        content="Commercial junk removal services — office cleanouts, warehouse clearing, retail waste removal, construction debris hauling, and recurring business waste management. Fast, reliable, and eco-friendly.">
+        content="Commercial junk removal and hauling services for offices, retail stores, property managers, and construction sites. Fast, reliable, and eco-friendly business solutions.">
 
     <!-- Tailwind CSS + Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -30,7 +28,6 @@
                         'haul-gray': '#424242',
                     },
                     fontFamily: {
-                        serif: ['"Playfair Display"', 'serif'],
                         sans: ['Inter', 'sans-serif'],
                     },
                 }
@@ -38,164 +35,8 @@
         }
     </script>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-
-        body {
-            overflow-x: hidden;
-            font-family: 'Inter', sans-serif;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes floatTruck {
-
-            0%,
-            100% {
-                transform: translateY(0) rotate(0deg);
-            }
-
-            50% {
-                transform: translateY(-15px) rotate(2deg);
-            }
-        }
-
-        .animate-fade-up {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        .animate-float {
-            animation: floatTruck 6s ease-in-out infinite;
-        }
-
-        #mobile-menu {
-            max-height: calc(100vh - 64px);
-            overflow-y: auto;
-            transition: all 0.3s ease;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .mobile-dropdown-icon {
-            transition: transform 0.3s ease;
-        }
-
-        .mobile-dropdown-icon.rotate {
-            transform: rotate(180deg);
-        }
-
-        body.menu-open {
-            overflow: hidden;
-        }
-
-        @media (max-width: 1280px) {
-            .desktop-nav {
-                display: none;
-            }
-        }
-
-        .nav-link {
-            position: relative;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #F57C00;
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-
-        [dir="rtl"] .nav-link::after {
-            left: auto;
-            right: 0;
-        }
-
-        .service-card {
-            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-        }
-
-        .service-card:hover {
-            transform: translateY(-8px);
-        }
-
-        .floating-particle {
-            position: fixed;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.1;
-            font-size: 24px;
-        }
-
-        .dark .bg-white\/95 {
-            background-color: #0a0a0a !important;
-        }
-
-        .dark .bg-gray-50 {
-            background-color: #1a1a1a !important;
-        }
-
-        .dark .text-gray-600 {
-            color: #cbd5e1 !important;
-        }
-
-        .dark h1,
-        .dark h2,
-        .dark h3,
-        .dark h4 {
-            color: #ffffff !important;
-        }
-
-        nav {
-            background-color: #ffffff !important;
-        }
-
-        .dark nav {
-            background-color: #0a0a0a !important;
-        }
-
-        .stat-card {
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .industry-card {
-            transition: all 0.3s ease;
-        }
-
-        .industry-card:hover {
-            transform: translateY(-5px);
-        }
-    </style>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="global.css">
 </head>
 
 <body class="bg-white text-gray-800 dark:bg-haul-dark dark:text-gray-100 font-sans antialiased">
@@ -354,30 +195,31 @@
     </nav>
 
     <!-- SECTION 1: HERO - Commercial Services -->
-    <section
-        class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-br from-gray-50 to-white dark:from-haul-dark dark:to-gray-900">
-        <div class="absolute inset-0 opacity-10"><img
-                src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2070&auto=format"
-                alt="Commercial building" class="w-full h-full object-cover"></div>
-        <div
-            class="absolute inset-0 bg-gradient-to-b from-white/80 to-white/95 dark:from-haul-dark/80 dark:to-haul-dark/95">
-        </div>
+    <section class="relative min-h-[70vh] flex items-center justify-center pt-24 pb-12 overflow-hidden bg-gradient-to-br from-green-50/50 to-orange-50/50 dark:from-haul-dark dark:to-gray-900">
+        <!-- Background decorative elements -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[600px] h-[600px] bg-haul-secondary/10 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-[500px] h-[500px] bg-haul-primary/10 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+
         <div class="relative z-10 text-center px-5 max-w-4xl mx-auto">
-            <div class="inline-flex items-center gap-3 mb-6 animate-fade-up opacity-0" style="animation-delay: 0.1s;">
-                <span class="w-12 h-[1px] bg-haul-secondary"></span><span
-                    class="text-haul-secondary text-[10px] sm:text-xs uppercase tracking-[0.3em] font-bold">For
-                    Businesses</span><span class="w-12 h-[1px] bg-haul-secondary"></span></div>
-            <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold text-gray-900 dark:text-white leading-[1.1] mb-6 animate-fade-up opacity-0"
-                style="animation-delay: 0.3s;">Commercial <span class="text-haul-secondary">Junk Removal</span></h1>
-            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-base md:text-lg font-light animate-fade-up opacity-0 px-4"
-                style="animation-delay: 0.5s;">Fast, professional, and reliable junk removal for offices, warehouses,
-                retail stores, construction sites, and more.</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-5 mt-8 animate-fade-up opacity-0"
-                style="animation-delay: 0.7s;"><a href="contact.html"
-                    class="bg-haul-secondary hover:bg-haul-primary text-white px-8 py-3.5 rounded-full text-sm font-bold transition shadow-lg">Request
-                    Commercial Quote</a><a href="tel:+18885550123"
-                    class="border-2 border-haul-secondary text-haul-secondary hover:bg-haul-secondary hover:text-white px-8 py-3.5 rounded-full text-sm font-bold transition">Call
-                    (888) 555-0123</a></div>
+            <div class="inline-flex items-center gap-3 mb-6 bg-white dark:bg-gray-800 px-4 py-2 rounded-full shadow-sm border border-gray-100 dark:border-gray-700 animate-fade-up opacity-0" style="animation-delay: 0.1s;">
+                <span class="w-2 h-2 rounded-full bg-haul-secondary pulse-glow"></span>
+                <span class="text-gray-800 dark:text-gray-200 text-[10px] sm:text-xs uppercase tracking-[0.2em] font-bold">For Businesses</span>
+            </div>
+            
+            <h1 class="text-5xl sm:text-6xl md:text-7xl font-heading font-bold text-gray-900 dark:text-white leading-[1.1] mb-6 animate-fade-up opacity-0"
+                style="animation-delay: 0.3s;">Commercial <span class="text-transparent bg-clip-text bg-gradient-to-r from-haul-secondary to-orange-500">Junk Removal</span></h1>
+            
+            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed animate-fade-up opacity-0 px-4"
+                style="animation-delay: 0.5s;">Fast, professional, and reliable junk removal for offices, warehouses, retail stores, construction sites, and more.</p>
+                
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mt-8 animate-fade-up opacity-0" style="animation-delay: 0.7s;">
+                <a href="contact.html" class="btn-premium text-white px-8 py-4 rounded-full text-sm font-bold text-center flex items-center justify-center gap-2 shadow-lg">
+                    Request Commercial Quote <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="tel:+18885550123" class="glass text-gray-800 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 px-8 py-4 rounded-full text-sm font-bold transition text-center flex items-center justify-center gap-2">
+                    <i class="fas fa-phone-alt text-haul-secondary"></i> (888) 555-0123
+                </a>
+            </div>
         </div>
     </section>
 
@@ -385,9 +227,9 @@
     <section class="py-20 lg:py-28 bg-white dark:bg-gray-900 overflow-hidden">
         <div class="max-w-7xl mx-auto px-5">
             <div class="text-center mb-20">
-                <span class="text-haul-secondary text-[10px] tracking-[0.4em] font-bold block mb-3">Tailored Solutions</span>
-                <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white">Commercial Services</h2>
-                <div class="w-20 h-[2px] bg-haul-secondary mx-auto mt-5"></div>
+                <span class="text-haul-secondary text-[10px] tracking-[0.4em] font-bold block mb-3 uppercase">Tailored Solutions</span>
+                <h2 class="text-4xl md:text-5xl font-heading font-bold text-gray-900 dark:text-white">Commercial Services</h2>
+                <div class="w-20 h-[2px] bg-gradient-to-r from-haul-primary to-haul-secondary mx-auto mt-5 rounded-full"></div>
             </div>
 
             <div class="space-y-24">
